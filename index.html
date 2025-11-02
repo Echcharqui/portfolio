@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/astrosoft-favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Electrolize&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>hamza echcharqui</title>
+    <style>
+      body {
+        scrollbar-width: none !important;
+      }
+      body::-webkit-scrollbar {
+        display: none !important;
+      }
+      body #preloader {
+        width: 100vw;
+        height: 100vh;
+        background-color: #000;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      body #preloader img {
+        width: 250px;
+        -o-object-fit: cover;
+        object-fit: cover;
+      }
+      body #preloader.hide {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- preloader -->
+    <div id="preloader" class="flex justify-center items-center">
+      <img src="/logo/logo.svg" alt="astrosoft logo" />
+    </div>
+
+    <div id="app" class="app-shell flex flex-row" aria-hidden="true">
+      <!-- desktop menu -->
+      <div
+        class="desktop-menu hidden bg-black basis-1/4 min-h-lvh md:flex flex-col justify-center items-start pl-20"
+      >
+        <img
+          src="/logo/logo.svg"
+          alt="astrosoft logo"
+          class="w-40 md-w-60 object-cover mb-10"
+        />
+
+        <ul class="text-white text-2xl capitalize">
+          <li class="mb-5">home</li>
+          <li class="mb-5">about me</li>
+          <li class="mb-5">service</li>
+          <li class="mb-5">portfolio</li>
+          <li class="mb-5">blog</li>
+          <li class="mb-5">contact</li>
+        </ul>
+      </div>
+
+      <!-- mobile menu -->
+      <!-- <div class="mobile-menu"></div> -->
+
+      <div
+        class="sections-container h-lvh basis-4/4 md:basis-3/4 overflow-y-scroll"
+      >
+        <!-- home -->
+        <section
+          id="home"
+          class="w-full h-lvh flex flex-row flex-nowrap justify-center items-center"
+        >
+          <div id="my-image">
+            <div class="corner corner-1">
+              <img src="/scifi-elements/corner.svg" alt="corner-element" />
+            </div>
+            <div class="corner corner-2">
+              <img src="/scifi-elements/corner.svg" alt="corner-element" />
+            </div>
+            <div class="corner corner-3">
+              <img src="/scifi-elements/corner.svg" alt="corner-element" />
+            </div>
+            <div class="corner corner-4">
+              <img src="/scifi-elements/corner.svg" alt="corner-element" />
+            </div>
+
+            <div class="profile-image-container">
+              <div
+                id="loading-profile-picture"
+                class="flex justify-center items-center"
+              >
+                <img
+                  src="/scifi-elements/loading-one.svg"
+                  alt="loading"
+                  class="loading-one"
+                />
+                <img
+                  src="/scifi-elements/loading-tow.svg"
+                  alt="loading"
+                  class="loading-tow"
+                />
+
+                <span>loading ...</span>
+              </div>
+
+              <div id="image-error">
+                <span class="text-red-500"
+                  ><i data-lucide="triangle-alert"></i
+                ></span>
+                <span class="text-red-500 capitalize font-bold"
+                  >image not found !</span
+                >
+              </div>
+            </div>
+            <!--  -->
+          </div>
+        </section>
+
+        <!-- about me -->
+        <section
+          class="w-full h-lvh bg-red-300 flex flex-row flex-nowrap justify-around items-start"
+        ></section>
+
+        <!-- service -->
+        <section></section>
+
+        <!-- Portfolio -->
+        <section></section>
+
+        <!-- Blog -->
+        <section></section>
+
+        <!-- Contact -->
+        <section></section>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

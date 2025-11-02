@@ -1,0 +1,231 @@
+@keyframes spin-right {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin-left {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+@keyframes show-image {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes flashing {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+@keyframes blinking {
+  0% {
+    opacity: 0.2;
+    filter: brightness(150%) contrast(120%) saturate(120%);
+  }
+  25% {
+    opacity: 1;
+    filter: brightness(250%) contrast(140%) saturate(140%);
+  }
+  50% {
+    opacity: 0.4;
+    filter: brightness(180%) contrast(130%) saturate(130%);
+  }
+  75% {
+    opacity: 1;
+    filter: brightness(300%) contrast(160%) saturate(150%);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(100%) contrast(100%) saturate(100%);
+  }
+}
+* {
+  outline: none;
+  -moz-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: "Electrolize", sans-serif;
+}
+body .sections-container {
+  background-image: url("/bg/bg-space.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  scrollbar-width: none;
+}
+body .sections-container::-webkit-scrollbar {
+  display: none;
+}
+body .sections-container #home {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+body .sections-container #home #my-image {
+  position: relative;
+  width: 250px;
+  height: 255px;
+  transition-property: width height;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+}
+body .sections-container #home #my-image.scale {
+  animation: blinking 300ms linear forwards;
+  width: 432px;
+  height: 485px;
+}
+body .sections-container #home #my-image #loading-profile-picture {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition-property: opacity;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+}
+body .sections-container #home #my-image #loading-profile-picture.show {
+  opacity: 1;
+}
+body .sections-container #home #my-image #loading-profile-picture.hide {
+  display: none;
+}
+body .sections-container #home #my-image #loading-profile-picture .loading-one {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 40%;
+  left: 38%;
+  opacity: 1 !important;
+  animation: spin-right 2s linear infinite;
+}
+body .sections-container #home #my-image #loading-profile-picture .loading-tow {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 40%;
+  left: 38%;
+  opacity: 1 !important;
+  animation: spin-left 2s linear infinite;
+}
+body .sections-container #home #my-image #loading-profile-picture span {
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 11px;
+  position: absolute;
+  top: 49%;
+  left: 43%;
+}
+body .sections-container #home #my-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 181, 211, 0.3);
+  --cut: 20px; /* notch size */
+  clip-path: polygon(var(--cut) 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, var(--cut) 100%, 0 calc(100% - var(--cut)), 0 var(--cut));
+  z-index: 1;
+  pointer-events: none; /* keeps it from blocking clicks */
+}
+body .sections-container #home #my-image .corner {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+}
+body .sections-container #home #my-image .corner-1 {
+  top: -8px;
+  left: -8px;
+  transform: rotate(0deg);
+}
+body .sections-container #home #my-image .corner-2 {
+  top: -8px;
+  right: -8px;
+  transform: rotate(90deg);
+}
+body .sections-container #home #my-image .corner-3 {
+  bottom: -8px;
+  right: -8px;
+  transform: rotate(180deg);
+}
+body .sections-container #home #my-image .corner-4 {
+  bottom: -8px;
+  left: -8px;
+  transform: rotate(270deg);
+}
+body .sections-container #home #my-image .profile-image-container {
+  width: 100%;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  padding: 15px;
+}
+body .sections-container #home #my-image .profile-image-container img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: relative;
+  z-index: 2;
+  border-radius: 10px;
+  animation: show-image 300ms linear forwards;
+}
+body .sections-container #home #my-image .profile-image-container #image-error {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: flahsing 1s linear infinite;
+}
+body .sections-container #home #my-image .profile-image-container #image-error.show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+body .sections-container #home #my-image .profile-image-container #image-error span {
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  body .sections-container {
+    background-image: url("/bg/bg-mobile-space.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  body #home #my-image.scale {
+    animation: blinking 300ms linear forwards;
+    width: 332px !important;
+    height: 370px !important;
+  }
+  body #home #my-image #loading-profile-picture .loading-one {
+    top: 38% !important;
+    left: 35% !important;
+  }
+  body #home #my-image #loading-profile-picture .loading-tow {
+    top: 38% !important;
+    left: 35% !important;
+  }
+}/*# sourceMappingURL=custom.css.map */
