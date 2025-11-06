@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @keyframes spin-right {
   from {
     transform: rotate(0deg);
@@ -22,7 +23,7 @@
     opacity: 1;
   }
 }
-@keyframes flashing {
+@keyframes flahsing {
   0% {
     opacity: 0.5;
   }
@@ -55,6 +56,11 @@
     filter: brightness(100%) contrast(100%) saturate(100%);
   }
 }
+@keyframes blink {
+  50% {
+    opacity: 0.15;
+  }
+}
 * {
   outline: none;
   -moz-user-select: none;
@@ -77,7 +83,44 @@ body .sections-container::-webkit-scrollbar {
   display: none;
 }
 body .sections-container #home {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+body .sections-container #home #me {
+  width: 450px;
+  height: 93px;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 100ms;
+  transition-timing-function: ease;
+}
+body .sections-container #home #me.show {
+  opacity: 1;
+}
+body .sections-container #home #me h1 {
+  font-size: 26px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+}
+body .sections-container #home #me h1 span {
+  color: #00b5d3;
+}
+body .sections-container #home #me h2 {
+  font-size: 35px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+}
+body .sections-container #home #me .cursor::after {
+  content: "▍";
+  display: inline-block;
+  margin-left: 2px;
+  animation: blink 0.9s steps(1, end) infinite;
+  opacity: 0.9;
+}
+body .sections-container #home #relation-linker {
+  width: 200px;
+  height: 100px;
 }
 body .sections-container #home #my-image {
   position: relative;
@@ -214,6 +257,19 @@ body .sections-container #home #my-image .profile-image-container #image-error s
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+  }
+  body #home {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+  }
+  body #home #me {
+    width: 360px !important;
+    height: 80px !important;
+  }
+  body #home #me h1 {
+    font-size: 25px !important;
+  }
+  body #home #me h2 {
+    font-size: 31px !important;
   }
   body #home #my-image.scale {
     animation: blinking 300ms linear forwards;

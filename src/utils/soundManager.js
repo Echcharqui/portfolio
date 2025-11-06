@@ -4,6 +4,8 @@ import { Howl, Howler } from "howler";
 const manifest = {
     scaleImageContainer: ["/sounds/scaleImageContainer.mp3"],
     showImage: ["/sounds/showImage.mp3"],
+    typoBip: ["/sounds/typoBip.mp3"],
+
 };
 
 const sounds = {};
@@ -59,6 +61,7 @@ function play(name, opts = {}, options = { requireUnlocked: true }) {
     }
 
     if (opts.volume != null) s.volume(opts.volume);
+
     s.play();
     return true;
 }
