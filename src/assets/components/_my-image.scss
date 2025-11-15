@@ -1,0 +1,292 @@
+@use '../animations';
+
+.image-ctn {
+  width: 432px;
+  height: 485px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  
+  & #my-image {
+    position: relative;
+    width: 250px;
+    height: 255px;
+    opacity: 0;
+
+    transition-property: width height opacity;
+    transition-duration: 300ms;
+    transition-timing-function: ease;
+
+    &.scale {
+      opacity: 1;
+      animation: blinking 300ms linear forwards;
+      width: 432px;
+      height: 485px;
+    }
+
+    & #loading-profile-picture {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+      transition-property: opacity;
+      transition-duration: 300ms;
+      transition-timing-function: ease;
+
+      &.show {
+        opacity: 1;
+      }
+
+      &.hide {
+        display: none;
+      }
+
+      & .loading-one {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        top: 40%;
+        left: 38%;
+        opacity: 1 !important;
+        animation: spin-right 2s linear infinite;
+      }
+
+      & .loading-tow {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        top: 40%;
+        left: 38%;
+        opacity: 1 !important;
+        animation: spin-left 2s linear infinite;
+      }
+
+      & span {
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 11px;
+        position: absolute;
+        top: 49%;
+        left: 43%;
+      }
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 181, 211, 0.3);
+      --cut: 20px; /* notch size */
+      clip-path: polygon(
+        var(--cut) 0,
+        calc(100% - var(--cut)) 0,
+        100% var(--cut),
+        100% calc(100% - var(--cut)),
+        calc(100% - var(--cut)) 100%,
+        var(--cut) 100%,
+        0 calc(100% - var(--cut)),
+        0 var(--cut)
+      );
+      z-index: 1;
+      pointer-events: none; /* keeps it from blocking clicks */
+    }
+
+    & .corner {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+
+      &-1 {
+        top: -8px;
+        left: -8px;
+        transform: rotate(0deg);
+      }
+      &-2 {
+        top: -8px;
+        right: -8px;
+        transform: rotate(90deg);
+      }
+      &-3 {
+        bottom: -8px;
+        right: -8px;
+        transform: rotate(180deg);
+      }
+      &-4 {
+        bottom: -8px;
+        left: -8px;
+        transform: rotate(270deg);
+      }
+    }
+
+    & .profile-image-container {
+      width: 100%;
+      display: flex;
+      justify-items: center;
+      align-items: center;
+      padding: 15px;
+
+      & img {
+        width: 100%;
+        object-fit: cover;
+        position: relative;
+        z-index: 2;
+        border-radius: 10px;
+
+        animation: show-image 300ms linear forwards;
+      }
+
+      & #image-error {
+        display: none;
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        animation: flahsing 1s linear infinite;
+
+        &.show {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+        }
+
+        & span {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1281px) {
+  .image-ctn {
+    width: 280px !important;
+    height: 314px !important;
+    & #my-image {
+      &.scale {
+        width: 280px !important;
+        height: 314px !important;
+      }
+
+      & #loading-profile-picture {
+        & .loading-one {
+          width: 80px;
+          height: 80px;
+          top: 40%;
+          left: 36%;
+        }
+
+        & .loading-tow {
+          width: 80px;
+          height: 80px;
+          top: 40%;
+          left: 36%;
+        }
+
+        & span {
+          font-size: 9px;
+          top: 51%;
+          left: 42%;
+        }
+      }
+
+      & .corner {
+        width: 50px;
+        height: 50px;
+      }
+      &::before {
+        --cut: 12px; /* notch size */
+      }
+
+      & .profile-image-container {
+        width: 100%;
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        padding: 15px;
+
+        & img {
+          width: 100%;
+          object-fit: cover;
+          position: relative;
+          z-index: 2;
+          border-radius: 10px;
+
+          animation: show-image 300ms linear forwards;
+        }
+
+        & #image-error {
+          display: none;
+          width: 100%;
+          height: 100%;
+
+          position: absolute;
+          top: 0;
+          left: 0;
+
+          width: 100%;
+          height: 100%;
+
+          animation: flahsing 1s linear infinite;
+
+          &.show {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+          }
+
+          & span {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1282px) and (max-width: 1440px) {
+  .image-ctn {
+    width: 340px !important;
+    height: 380px !important;
+    & #my-image {
+      &.scale {
+        width: 340px !important;
+        height: 380px !important;
+      }
+
+      & #loading-profile-picture {
+        & .loading-one {
+          width: 80px;
+          height: 80px;
+          top: 40%;
+          left: 36%;
+        }
+
+        & .loading-tow {
+          width: 80px;
+          height: 80px;
+          top: 40%;
+          left: 36%;
+        }
+
+        & span {
+          font-size: 9px;
+          top: 51%;
+          left: 42%;
+        }
+      }
+    }
+  }
+}

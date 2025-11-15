@@ -1,0 +1,169 @@
+@use '../animations';
+
+#relation-linker {
+  // border: 1px solid gray;
+  width: 150px;
+  height: 100px;
+
+  transition-property: width height;
+  transition-duration: 500ms;
+
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & .svg-core {
+    & .ap-group {
+      transform-box: fill-box; /* use the group’s tight bounds */
+      transform-origin: center; /* center of that box */
+      animation: spin-right 2s linear infinite;
+    }
+    & .as-group {
+      transform-box: fill-box; /* use the group’s tight bounds */
+      transform-origin: center; /* center of that box */
+      animation: spin-left 2s linear infinite;
+    }
+    & .dots-roup {
+      transform-box: fill-box; /* use the group’s tight bounds */
+      transform-origin: center; /* center of that box */
+      animation: waving 2s ease-in-out infinite alternate;
+    }
+  }
+
+  & .svg-links-right {
+    position: absolute;
+    top: 0;
+    right: -15px;
+  }
+
+  & .svg-links-bottom {
+    position: absolute;
+    top: 7%;
+    right: 55%;
+  }
+
+  & .svg-links-left {
+    position: absolute;
+    top: 45%;
+    left: -10%;
+  }
+
+  & .arrows-group {
+    opacity: 0;
+    position: absolute;
+    top: 2%;
+    left: 20%;
+
+    width: 180px;
+
+    transition-property: opacity;
+    transition-duration: 1s;
+    transition-delay: 1s;
+    transition-timing-function: ease;
+
+    & .arrow {
+      &-1 {
+        animation: blinking 2s linear 300ms alternate infinite;
+      }
+      &-2 {
+        animation: blinking 2s linear 600ms alternate infinite;
+      }
+      &-3 {
+        animation: blinking 2s linear 100ms alternate infinite;
+      }
+      &-4 {
+        animation: blinking 2s linear 500ms alternate infinite;
+      }
+    }
+  }
+
+  & .lines {
+    & .e1 {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+    }
+
+    & .e2 {
+      opacity: 0;
+      transition-property: opacity;
+      transition-duration: 300ms;
+      transition-delay: 200ms;
+      transition-timing-function: ease-out;
+    }
+  }
+
+  &.show {
+    width: 300px !important;
+    height: 200px !important;
+
+    & .arrows-group {
+      opacity: 1;
+    }
+
+    & .lines {
+      & .e1 {
+        animation: draw-line 300ms ease-out 1s forwards;
+      }
+      & .e2 {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  #relation-linker {
+    &.show {
+      width: 200px !important;
+      height: 150px !important;
+    }
+
+    & .svg-links-right {
+      top: -10%;
+      right: -12px;
+    }
+
+    & .svg-links-bottom {
+      top: -20%;
+      right: 35%;
+    }
+
+    & .svg-links-left {
+      top: 52%;
+      left: -10%;
+    }
+    & .arrows-group {
+      position: absolute;
+      top: 0%;
+      left: 15%;
+
+      width: 130px;
+    }
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1281px) {
+  #relation-linker {
+    & .arrows-group {
+      position: absolute;
+      top: 0%;
+      left: 20%;
+
+      width: 170px;
+    }
+  }
+}
+
+@media (min-width: 1282px) and (max-width: 1440px) {
+  #relation-linker {
+    & .arrows-group {
+      position: absolute;
+      top: 0%;
+      left: 20%;
+
+      width: 170px;
+    }
+  }
+}

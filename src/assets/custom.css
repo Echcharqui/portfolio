@@ -61,12 +61,517 @@
     opacity: 0.15;
   }
 }
+@keyframes rotate {
+  from {
+    transform: scale(0.8) rotate(0deg);
+  }
+  to {
+    transform: scale(1) rotate(360deg);
+  }
+}
+@keyframes draw-line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes fade-in {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes waving {
+  from {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.image-ctn {
+  width: 432px;
+  height: 485px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.image-ctn #my-image {
+  position: relative;
+  width: 250px;
+  height: 255px;
+  opacity: 0;
+  transition-property: width height opacity;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+}
+.image-ctn #my-image.scale {
+  opacity: 1;
+  animation: blinking 300ms linear forwards;
+  width: 432px;
+  height: 485px;
+}
+.image-ctn #my-image #loading-profile-picture {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition-property: opacity;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+}
+.image-ctn #my-image #loading-profile-picture.show {
+  opacity: 1;
+}
+.image-ctn #my-image #loading-profile-picture.hide {
+  display: none;
+}
+.image-ctn #my-image #loading-profile-picture .loading-one {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 40%;
+  left: 38%;
+  opacity: 1 !important;
+  animation: spin-right 2s linear infinite;
+}
+.image-ctn #my-image #loading-profile-picture .loading-tow {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 40%;
+  left: 38%;
+  opacity: 1 !important;
+  animation: spin-left 2s linear infinite;
+}
+.image-ctn #my-image #loading-profile-picture span {
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 11px;
+  position: absolute;
+  top: 49%;
+  left: 43%;
+}
+.image-ctn #my-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 181, 211, 0.3);
+  --cut: 20px; /* notch size */
+  clip-path: polygon(var(--cut) 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, var(--cut) 100%, 0 calc(100% - var(--cut)), 0 var(--cut));
+  z-index: 1;
+  pointer-events: none; /* keeps it from blocking clicks */
+}
+.image-ctn #my-image .corner {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+}
+.image-ctn #my-image .corner-1 {
+  top: -8px;
+  left: -8px;
+  transform: rotate(0deg);
+}
+.image-ctn #my-image .corner-2 {
+  top: -8px;
+  right: -8px;
+  transform: rotate(90deg);
+}
+.image-ctn #my-image .corner-3 {
+  bottom: -8px;
+  right: -8px;
+  transform: rotate(180deg);
+}
+.image-ctn #my-image .corner-4 {
+  bottom: -8px;
+  left: -8px;
+  transform: rotate(270deg);
+}
+.image-ctn #my-image .profile-image-container {
+  width: 100%;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  padding: 15px;
+}
+.image-ctn #my-image .profile-image-container img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: relative;
+  z-index: 2;
+  border-radius: 10px;
+  animation: show-image 300ms linear forwards;
+}
+.image-ctn #my-image .profile-image-container #image-error {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: flahsing 1s linear infinite;
+}
+.image-ctn #my-image .profile-image-container #image-error.show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.image-ctn #my-image .profile-image-container #image-error span {
+  font-size: 16px;
+}
+
+@media (min-width: 769px) and (max-width: 1281px) {
+  .image-ctn {
+    width: 280px !important;
+    height: 314px !important;
+  }
+  .image-ctn #my-image.scale {
+    width: 280px !important;
+    height: 314px !important;
+  }
+  .image-ctn #my-image #loading-profile-picture .loading-one {
+    width: 80px;
+    height: 80px;
+    top: 40%;
+    left: 36%;
+  }
+  .image-ctn #my-image #loading-profile-picture .loading-tow {
+    width: 80px;
+    height: 80px;
+    top: 40%;
+    left: 36%;
+  }
+  .image-ctn #my-image #loading-profile-picture span {
+    font-size: 9px;
+    top: 51%;
+    left: 42%;
+  }
+  .image-ctn #my-image .corner {
+    width: 50px;
+    height: 50px;
+  }
+  .image-ctn #my-image::before {
+    --cut: 12px; /* notch size */
+  }
+  .image-ctn #my-image .profile-image-container {
+    width: 100%;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    padding: 15px;
+  }
+  .image-ctn #my-image .profile-image-container img {
+    width: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+    position: relative;
+    z-index: 2;
+    border-radius: 10px;
+    animation: show-image 300ms linear forwards;
+  }
+  .image-ctn #my-image .profile-image-container #image-error {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: flahsing 1s linear infinite;
+  }
+  .image-ctn #my-image .profile-image-container #image-error.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .image-ctn #my-image .profile-image-container #image-error span {
+    font-size: 16px;
+  }
+}
+@media (min-width: 1282px) and (max-width: 1440px) {
+  .image-ctn {
+    width: 340px !important;
+    height: 380px !important;
+  }
+  .image-ctn #my-image.scale {
+    width: 340px !important;
+    height: 380px !important;
+  }
+  .image-ctn #my-image #loading-profile-picture .loading-one {
+    width: 80px;
+    height: 80px;
+    top: 40%;
+    left: 36%;
+  }
+  .image-ctn #my-image #loading-profile-picture .loading-tow {
+    width: 80px;
+    height: 80px;
+    top: 40%;
+    left: 36%;
+  }
+  .image-ctn #my-image #loading-profile-picture span {
+    font-size: 9px;
+    top: 51%;
+    left: 42%;
+  }
+}
+#me {
+  position: relative;
+  width: 385px;
+  height: 115px;
+  padding: 20px;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 100ms;
+  transition-timing-function: ease;
+}
+#me svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#me svg .te1 {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+#me svg .te2 {
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 300ms;
+  transition-delay: 200ms;
+  transition-timing-function: ease-out;
+}
+#me.show {
+  opacity: 1;
+}
+#me.show h1 {
+  opacity: 1;
+}
+#me.show svg .te1 {
+  animation: draw-line 500ms ease-out forwards;
+}
+#me.show svg .te2 {
+  opacity: 1;
+}
+#me h1 {
+  opacity: 0;
+  font-size: 21px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  transition-property: opacity;
+  transition-duration: 300ms;
+  transition-delay: 800ms;
+}
+#me h1 span {
+  color: #00b5d3;
+}
+#me h2 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+}
+#me .cursor::after {
+  content: "▍";
+  display: inline-block;
+  margin-left: 2px;
+  animation: blink 0.9s steps(1, end) infinite;
+  opacity: 0.9;
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  #me {
+    width: 215px !important;
+    height: 60px !important;
+    padding: 10px;
+    padding-left: 15px;
+  }
+  #me h1 {
+    font-size: 13px !important;
+  }
+  #me h2 {
+    font-size: 16px !important;
+  }
+}
+@media (min-width: 1025px) and (max-width: 1281px) {
+  #me {
+    width: 290px !important;
+    height: 78px !important;
+    padding: 10px;
+    padding-left: 20px;
+  }
+  #me h1 {
+    font-size: 17px !important;
+  }
+  #me h2 {
+    font-size: 21px !important;
+  }
+}
+@media (min-width: 1282px) and (max-width: 1440px) {
+  #me {
+    width: 320px !important;
+    height: 90px !important;
+    padding: 10px;
+    padding-left: 20px;
+    padding-top: 15px;
+  }
+  #me h1 {
+    font-size: 19px;
+  }
+  #me h2 {
+    font-size: 24px;
+  }
+}
+#relation-linker {
+  width: 150px;
+  height: 100px;
+  transition-property: width height;
+  transition-duration: 500ms;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#relation-linker .svg-core .ap-group {
+  transform-box: fill-box; /* use the group’s tight bounds */
+  transform-origin: center; /* center of that box */
+  animation: spin-right 2s linear infinite;
+}
+#relation-linker .svg-core .as-group {
+  transform-box: fill-box; /* use the group’s tight bounds */
+  transform-origin: center; /* center of that box */
+  animation: spin-left 2s linear infinite;
+}
+#relation-linker .svg-core .dots-roup {
+  transform-box: fill-box; /* use the group’s tight bounds */
+  transform-origin: center; /* center of that box */
+  animation: waving 2s ease-in-out infinite alternate;
+}
+#relation-linker .svg-links-right {
+  position: absolute;
+  top: 0;
+  right: -15px;
+}
+#relation-linker .svg-links-bottom {
+  position: absolute;
+  top: 7%;
+  right: 55%;
+}
+#relation-linker .svg-links-left {
+  position: absolute;
+  top: 45%;
+  left: -10%;
+}
+#relation-linker .arrows-group {
+  opacity: 0;
+  position: absolute;
+  top: 2%;
+  left: 20%;
+  width: 180px;
+  transition-property: opacity;
+  transition-duration: 1s;
+  transition-delay: 1s;
+  transition-timing-function: ease;
+}
+#relation-linker .arrows-group .arrow-1 {
+  animation: blinking 2s linear 300ms alternate infinite;
+}
+#relation-linker .arrows-group .arrow-2 {
+  animation: blinking 2s linear 600ms alternate infinite;
+}
+#relation-linker .arrows-group .arrow-3 {
+  animation: blinking 2s linear 100ms alternate infinite;
+}
+#relation-linker .arrows-group .arrow-4 {
+  animation: blinking 2s linear 500ms alternate infinite;
+}
+#relation-linker .lines .e1 {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+#relation-linker .lines .e2 {
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 300ms;
+  transition-delay: 200ms;
+  transition-timing-function: ease-out;
+}
+#relation-linker.show {
+  width: 300px !important;
+  height: 200px !important;
+}
+#relation-linker.show .arrows-group {
+  opacity: 1;
+}
+#relation-linker.show .lines .e1 {
+  animation: draw-line 300ms ease-out 1s forwards;
+}
+#relation-linker.show .lines .e2 {
+  opacity: 1;
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  #relation-linker.show {
+    width: 200px !important;
+    height: 150px !important;
+  }
+  #relation-linker .svg-links-right {
+    top: -10%;
+    right: -12px;
+  }
+  #relation-linker .svg-links-bottom {
+    top: -20%;
+    right: 35%;
+  }
+  #relation-linker .svg-links-left {
+    top: 52%;
+    left: -10%;
+  }
+  #relation-linker .arrows-group {
+    position: absolute;
+    top: 0%;
+    left: 15%;
+    width: 130px;
+  }
+}
+@media (min-width: 1025px) and (max-width: 1281px) {
+  #relation-linker .arrows-group {
+    position: absolute;
+    top: 0%;
+    left: 20%;
+    width: 170px;
+  }
+}
+@media (min-width: 1282px) and (max-width: 1440px) {
+  #relation-linker .arrows-group {
+    position: absolute;
+    top: 0%;
+    left: 20%;
+    width: 170px;
+  }
+}
 * {
   outline: none;
   -moz-user-select: none;
        user-select: none;
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* hidden state: line is “not drawn” */
+/* when wrapper gets .show, draw the path */
+.line-anim.show svg .a {
+  animation: draw-line 1.2s ease-out 3s forwards;
 }
 
 body {
@@ -85,171 +590,6 @@ body .sections-container::-webkit-scrollbar {
 body .sections-container #home {
   background-color: rgba(0, 0, 0, 0.5);
 }
-body .sections-container #home #me {
-  width: 450px;
-  height: 93px;
-  opacity: 0;
-  transition-property: opacity;
-  transition-duration: 100ms;
-  transition-timing-function: ease;
-}
-body .sections-container #home #me.show {
-  opacity: 1;
-}
-body .sections-container #home #me h1 {
-  font-size: 26px;
-  font-weight: bold;
-  color: #fff;
-  text-transform: uppercase;
-}
-body .sections-container #home #me h1 span {
-  color: #00b5d3;
-}
-body .sections-container #home #me h2 {
-  font-size: 35px;
-  font-weight: bold;
-  color: #fff;
-  text-transform: uppercase;
-}
-body .sections-container #home #me .cursor::after {
-  content: "▍";
-  display: inline-block;
-  margin-left: 2px;
-  animation: blink 0.9s steps(1, end) infinite;
-  opacity: 0.9;
-}
-body .sections-container #home #relation-linker {
-  width: 200px;
-  height: 100px;
-}
-body .sections-container #home #my-image {
-  position: relative;
-  width: 250px;
-  height: 255px;
-  transition-property: width height;
-  transition-duration: 300ms;
-  transition-timing-function: ease;
-}
-body .sections-container #home #my-image.scale {
-  animation: blinking 300ms linear forwards;
-  width: 432px;
-  height: 485px;
-}
-body .sections-container #home #my-image #loading-profile-picture {
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transition-property: opacity;
-  transition-duration: 300ms;
-  transition-timing-function: ease;
-}
-body .sections-container #home #my-image #loading-profile-picture.show {
-  opacity: 1;
-}
-body .sections-container #home #my-image #loading-profile-picture.hide {
-  display: none;
-}
-body .sections-container #home #my-image #loading-profile-picture .loading-one {
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  top: 40%;
-  left: 38%;
-  opacity: 1 !important;
-  animation: spin-right 2s linear infinite;
-}
-body .sections-container #home #my-image #loading-profile-picture .loading-tow {
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  top: 40%;
-  left: 38%;
-  opacity: 1 !important;
-  animation: spin-left 2s linear infinite;
-}
-body .sections-container #home #my-image #loading-profile-picture span {
-  color: white;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 11px;
-  position: absolute;
-  top: 49%;
-  left: 43%;
-}
-body .sections-container #home #my-image::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 181, 211, 0.3);
-  --cut: 20px; /* notch size */
-  clip-path: polygon(var(--cut) 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, var(--cut) 100%, 0 calc(100% - var(--cut)), 0 var(--cut));
-  z-index: 1;
-  pointer-events: none; /* keeps it from blocking clicks */
-}
-body .sections-container #home #my-image .corner {
-  position: absolute;
-  width: 70px;
-  height: 70px;
-}
-body .sections-container #home #my-image .corner-1 {
-  top: -8px;
-  left: -8px;
-  transform: rotate(0deg);
-}
-body .sections-container #home #my-image .corner-2 {
-  top: -8px;
-  right: -8px;
-  transform: rotate(90deg);
-}
-body .sections-container #home #my-image .corner-3 {
-  bottom: -8px;
-  right: -8px;
-  transform: rotate(180deg);
-}
-body .sections-container #home #my-image .corner-4 {
-  bottom: -8px;
-  left: -8px;
-  transform: rotate(270deg);
-}
-body .sections-container #home #my-image .profile-image-container {
-  width: 100%;
-  display: flex;
-  justify-items: center;
-  align-items: center;
-  padding: 15px;
-}
-body .sections-container #home #my-image .profile-image-container img {
-  width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  position: relative;
-  z-index: 2;
-  border-radius: 10px;
-  animation: show-image 300ms linear forwards;
-}
-body .sections-container #home #my-image .profile-image-container #image-error {
-  display: none;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  animation: flahsing 1s linear infinite;
-}
-body .sections-container #home #my-image .profile-image-container #image-error.show {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-body .sections-container #home #my-image .profile-image-container #image-error span {
-  font-size: 16px;
-}
 
 @media (max-width: 768px) {
   body .sections-container {
@@ -260,28 +600,5 @@ body .sections-container #home #my-image .profile-image-container #image-error s
   }
   body #home {
     background-color: rgba(0, 0, 0, 0.8) !important;
-  }
-  body #home #me {
-    width: 360px !important;
-    height: 80px !important;
-  }
-  body #home #me h1 {
-    font-size: 25px !important;
-  }
-  body #home #me h2 {
-    font-size: 31px !important;
-  }
-  body #home #my-image.scale {
-    animation: blinking 300ms linear forwards;
-    width: 332px !important;
-    height: 370px !important;
-  }
-  body #home #my-image #loading-profile-picture .loading-one {
-    top: 38% !important;
-    left: 35% !important;
-  }
-  body #home #my-image #loading-profile-picture .loading-tow {
-    top: 38% !important;
-    left: 35% !important;
   }
 }/*# sourceMappingURL=custom.css.map */

@@ -5,16 +5,19 @@ import { createIcons, TriangleAlert } from 'lucide';
 import Sound from "./utils/soundManager.js";
 import { runSequence } from './utils/animationSequence.js';
 import { initProfileImageLoader } from "./modules/profileImageLoader.js";
-import { nameAndStatusTyping } from './modules/nameAndStatusTyping.js'
+import { nameAndStatusTyping } from './modules/nameAndStatusTyping.js';
+import { linkerAnimation } from './modules/linkerAnimation.js'
+
 
 // start preloading ASAP
 Sound.loadAll();
 
 const homeTrigger = async () => {
     await runSequence([
+        () => linkerAnimation(),
+        "wait:1500",
+        () => nameAndStatusTyping(),
         () => initProfileImageLoader(),
-        "wait:500", // wait for half second
-        () => nameAndStatusTyping()
     ]);
 }
 
@@ -24,9 +27,7 @@ window.onload = function () {
         setTimeout(async () => {
             const element = document.getElementById("preloader");
             element.classList.add("hide");
-
             await homeTrigger()
-
         }, 2000);
     });
 

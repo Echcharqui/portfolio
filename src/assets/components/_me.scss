@@ -1,0 +1,131 @@
+@use '../animations';
+
+#me {
+  position: relative;
+  width: 385px;
+  height: 115px;
+  padding: 20px;
+
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 100ms;
+  transition-timing-function: ease;
+
+  & svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    & .te1 {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+    }
+
+    & .te2 {
+      opacity: 0;
+      transition-property: opacity;
+      transition-duration: 300ms;
+      transition-delay: 200ms;
+      transition-timing-function: ease-out;
+    }
+  }
+
+  &.show {
+    opacity: 1;
+
+    & h1 {
+      opacity: 1;
+    }
+
+    & svg {
+      & .te1 {
+        animation: draw-line 500ms ease-out forwards;
+      }
+
+      & .te2 {
+        opacity: 1;
+      }
+    }
+  }
+
+  & h1 {
+    opacity: 0;
+    font-size: 21px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    & span {
+      color: #00b5d3;
+    }
+    transition-property: opacity;
+    transition-duration: 300ms;
+    transition-delay: 800ms;
+  }
+
+  & h2 {
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  & .cursor {
+    &::after {
+      content: '▍';
+      display: inline-block;
+      margin-left: 2px;
+      animation: blink 0.9s steps(1, end) infinite;
+      opacity: 0.9;
+    }
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  #me {
+    width: 215px !important;
+    height: 60px !important;
+    padding: 10px;
+    padding-left: 15px;
+    & h1 {
+      font-size: 13px !important;
+    }
+
+    & h2 {
+      font-size: 16px !important;
+    }
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1281px) {
+  #me {
+    width: 290px !important;
+    height: 78px !important;
+    padding: 10px;
+    padding-left: 20px;
+
+    & h1 {
+      font-size: 17px !important;
+    }
+
+    & h2 {
+      font-size: 21px !important;
+    }
+  }
+}
+
+@media (min-width: 1282px) and (max-width: 1440px) {
+  #me {
+    width: 320px !important;
+    height: 90px !important;
+    padding: 10px;
+    padding-left: 20px;
+    padding-top: 15px;
+    & h1 {
+      font-size: 19px;
+    }
+
+    & h2 {
+      font-size: 24px;
+    }
+  }
+}

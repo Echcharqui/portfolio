@@ -1,4 +1,6 @@
 import { typeText } from "../utils/typeText.js";
+import Sound from '../utils/soundManager.js'
+
 
 export function nameAndStatusTyping() {
     return new Promise(async (resolve) => {
@@ -18,15 +20,17 @@ export function nameAndStatusTyping() {
         statusTarget.textContent = "";
 
         root.classList.add("show");
+        Sound.play("reactStatus", { volume: 0.6 });
 
-
-        // Type name (cursor hides after)
-        await typeText(nameTarget, nameText, { delay: 30, keepCursor: false, soundKey: "typoBip" });
-
-        // Type status (cursor stays visible)
         setTimeout(async () => {
-            await typeText(statusTarget, statusText, { delay: 30, keepCursor: true, soundKey: "typoBip" });
-        }, 200)
+            // Type name (cursor hides after)
+            await typeText(nameTarget, nameText, { delay: 30, keepCursor: false, soundKey: "typoBip" });
+
+            // Type status (cursor stays visible)
+            setTimeout(async () => {
+                await typeText(statusTarget, statusText, { delay: 30, keepCursor: true, soundKey: "typoBip" });
+            }, 200)
+        }, 600);
 
         resolve();
     });
