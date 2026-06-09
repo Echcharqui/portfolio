@@ -1,0 +1,182 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/breakpoints" as *;
+
+// ── Section container ──────────────────────────────────────────
+.contact {
+  padding: $space-9 $space-8 $space-10;
+  border-top: 1px solid $color-border;
+
+  @include tablet {
+    padding: $space-7 $space-6 $space-9;
+  }
+
+  @include mobile {
+    padding: $space-6 $space-5 $space-8;
+  }
+}
+
+// ── Section label ──────────────────────────────────────────────
+.contact__label {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+  margin-bottom: $space-7;
+  font-family: $font-display;
+  font-size: 0.62rem;
+  font-weight: 500;
+  color: rgba($color-accent, 0.65);
+  letter-spacing: 0.13em;
+
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: $color-border;
+  }
+}
+
+// ── Open for work badge ────────────────────────────────────────
+.contact__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  padding: 4px $space-3;
+  border: 1px solid rgba($color-online, 0.35);
+  background-color: rgba($color-online, 0.05);
+  font-family: $font-display;
+  font-size: 0.57rem;
+  font-weight: 600;
+  color: $color-online;
+  letter-spacing: 0.12em;
+  margin-bottom: $space-5;
+
+  // Status dot
+  &::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: $color-online;
+    flex-shrink: 0;
+  }
+}
+
+// ── Heading ────────────────────────────────────────────────────
+.contact__heading {
+  font-family: $font-main; // Space Grotesk — declarative statement, not a HUD label
+  font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+  font-weight: 700;
+  color: $color-text;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: $space-4;
+}
+
+// ── Description ───────────────────────────────────────────────
+.contact__description {
+  font-family: $font-main;
+  font-size: 0.95rem;
+  color: $color-text-secondary;
+  line-height: 1.75;
+  max-width: 580px;
+
+  @include tablet {
+    max-width: 100%;
+  }
+}
+
+// ── Two-column panel ───────────────────────────────────────────
+.contact__panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid $color-border;
+  margin-top: $space-7;
+  margin-bottom: $space-7;
+
+  @include below-desktop {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact__panel-left {
+  padding: $space-5;
+
+  @include desktop {
+    border-right: 1px solid $color-border;
+  }
+
+  @include below-desktop {
+    border-bottom: 1px solid $color-border;
+  }
+}
+
+.contact__panel-right {
+  padding: $space-5;
+}
+
+// ── Panel sub-header ──────────────────────────────────────────
+.contact__panel-header {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  margin-bottom: $space-4;
+  font-family: $font-display;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: $color-text;
+  letter-spacing: 0.12em;
+
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: $color-border;
+  }
+}
+
+// ── Availability chips ─────────────────────────────────────────
+.contact__avail-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+  list-style: none;
+}
+
+.contact__avail-item {
+  font-family: $font-main;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: $color-text-secondary;
+  padding: 4px $space-3;
+  border: 1px solid $color-border;
+  background-color: rgba($color-surface, 0.5);
+}
+
+// ── Action buttons ─────────────────────────────────────────────
+// Column flex with stretch — each .btn fills the panel width.
+.contact__actions {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+// ── Footer metadata ────────────────────────────────────────────
+.contact__footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-3 $space-6;
+  padding-top: $space-4;
+  border-top: 1px solid $color-border;
+}
+
+.contact__meta-item {
+  font-family: $font-display;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: $color-text-secondary;
+}
+
+.contact__meta-key {
+  color: $color-muted;
+}

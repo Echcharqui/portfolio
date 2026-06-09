@@ -1,0 +1,206 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/breakpoints" as *;
+
+// ── Section container ──────────────────────────────────────────
+.projects {
+  padding: $space-9 $space-8;
+  border-top: 1px solid $color-border;
+
+  @include tablet {
+    padding: $space-7 $space-6;
+  }
+
+  @include mobile {
+    padding: $space-6 $space-5;
+  }
+}
+
+// ── Section label (same pattern across all sections) ──────────
+.projects__label {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+  margin-bottom: $space-7;
+  font-family: $font-display;
+  font-size: 0.62rem;
+  font-weight: 500;
+  color: rgba($color-accent, 0.65);
+  letter-spacing: 0.13em;
+
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: $color-border;
+  }
+}
+
+// ── Section intro ──────────────────────────────────────────────
+.projects__intro {
+  max-width: 720px;
+  margin-bottom: $space-8;
+
+  @include tablet {
+    max-width: 100%;
+  }
+}
+
+.projects__heading {
+  font-family: $font-main;
+  font-size: clamp(1.35rem, 2.5vw, 1.9rem);
+  font-weight: 700;
+  color: $color-text;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  margin-bottom: $space-4;
+}
+
+.projects__lead {
+  font-family: $font-main;
+  font-size: 0.9rem;
+  color: $color-text-secondary;
+  line-height: 1.7;
+}
+
+// ── Project list — unified system panel ───────────────────────
+// Outer border wraps all entries; internal border-bottom acts as row divider.
+.projects__list {
+  border: 1px solid $color-border;
+  border-left: 2px solid rgba($color-accent, 0.25);
+}
+
+// ── Individual project entry ───────────────────────────────────
+.project-entry {
+  &:not(:last-child) {
+    border-bottom: 1px solid $color-border;
+  }
+}
+
+// ── Entry header: number + tags ────────────────────────────────
+.project-entry__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $space-4;
+  flex-wrap: wrap;
+  padding: $space-3 $space-5;
+  border-bottom: 1px solid $color-border;
+  background-color: rgba($color-surface, 0.5);
+}
+
+.project-entry__number {
+  font-family: $font-display;
+  font-size: 0.58rem;
+  font-weight: 600;
+  color: rgba($color-accent, 0.5);
+  letter-spacing: 0.14em;
+  flex-shrink: 0;
+  padding-top: 1px; // optical alignment with tag chips
+}
+
+.project-entry__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+  justify-content: flex-end;
+}
+
+.project-entry__tag {
+  display: inline-block;
+  font-family: $font-display;
+  font-size: 0.52rem;
+  font-weight: 600;
+  color: rgba($color-accent, 0.65);
+  letter-spacing: 0.09em;
+  padding: 2px 6px;
+  border: 1px solid rgba($color-accent, 0.18);
+  background-color: rgba($color-accent, 0.04);
+}
+
+// ── Entry body: 2-col on desktop, stacked below ────────────────
+.project-entry__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  @include below-desktop {
+    grid-template-columns: 1fr;
+  }
+}
+
+.project-entry__left {
+  padding: $space-5;
+
+  @include desktop {
+    border-right: 1px solid $color-border;
+  }
+}
+
+.project-entry__right {
+  padding: $space-5;
+
+  @include below-desktop {
+    border-top: 1px solid $color-border;
+    padding-top: $space-4;
+  }
+}
+
+// ── Left column content ────────────────────────────────────────
+.project-entry__name {
+  font-family: $font-main;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $color-text;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: $space-2;
+}
+
+.project-entry__meta {
+  display: block;
+  font-family: $font-display;
+  font-size: 0.57rem;
+  font-weight: 500;
+  color: $color-muted;
+  letter-spacing: 0.1em;
+  margin-bottom: $space-4;
+}
+
+.project-entry__description {
+  font-family: $font-main;
+  font-size: 0.875rem;
+  color: $color-text-secondary;
+  line-height: 1.72;
+}
+
+// ── Right column content ───────────────────────────────────────
+.project-entry__contrib-label {
+  font-family: $font-display;
+  font-size: 0.57rem;
+  font-weight: 600;
+  color: rgba($color-accent, 0.5);
+  letter-spacing: 0.12em;
+  margin-bottom: $space-3;
+}
+
+.project-entry__bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.project-entry__bullet {
+  position: relative;
+  padding-left: $space-4;
+  font-family: $font-main;
+  font-size: 0.875rem;
+  color: $color-text-secondary;
+  line-height: 1.6;
+
+  &::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: rgba($color-accent, 0.4);
+  }
+}

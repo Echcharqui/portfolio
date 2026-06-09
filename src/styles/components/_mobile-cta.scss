@@ -1,0 +1,50 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/breakpoints" as *;
+
+.mobile-cta {
+  display: none;
+
+  @include mobile {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    position: fixed;
+    bottom: $space-5;
+    right: $space-5;
+    z-index: 200;
+
+    padding: 10px $space-4;
+    background-color: $color-accent;
+    color: $color-bg;
+
+    font-family: $font-display;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    // Tactical: sharp corners, no border-radius
+    border: none;
+    outline: none;
+
+    transition: filter 180ms ease;
+
+    svg {
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+    }
+
+    &:hover,
+    &:focus-visible {
+      filter: brightness(0.88);
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-bg;
+      outline-offset: 2px;
+    }
+  }
+}

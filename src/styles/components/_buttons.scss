@@ -1,0 +1,52 @@
+@use "../abstracts/variables" as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  padding: 11px $space-6;
+  font-family: $font-display;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition:
+    background-color 180ms ease,
+    border-color     180ms ease,
+    filter           180ms ease;
+
+  &--primary {
+    background-color: $color-accent;
+    border-color: $color-accent;
+    color: $color-bg;
+
+    &:hover {
+      filter: brightness(0.88);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-accent;
+      outline-offset: 3px;
+    }
+  }
+
+  &--outline {
+    background-color: transparent;
+    border-color: rgba($color-accent, 0.45);
+    color: $color-accent;
+
+    &:hover {
+      background-color: rgba($color-accent, 0.07);
+      border-color: $color-accent;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-accent;
+      outline-offset: 3px;
+    }
+  }
+}

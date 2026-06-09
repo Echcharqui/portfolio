@@ -1,0 +1,189 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/breakpoints" as *;
+@use "../abstracts/mixins" as *;
+
+// ── Logo ──────────────────────────────────────────────────────
+.sidebar__logo {
+  flex-shrink: 0;
+  padding-bottom: $space-5;
+  border-bottom: 1px solid $color-border;
+
+  span {
+    font-family: $font-display;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: $color-accent;
+    letter-spacing: 0.12em;
+    display: block;
+  }
+
+  @include mobile {
+    padding-bottom: $space-3;
+    margin-bottom: $space-3;
+
+    span { font-size: 0.95rem; }
+  }
+}
+
+// ── Body ─────────────────────────────────────────────────────
+.sidebar__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+  padding: $space-5 0;
+  overflow-y: auto;
+
+  @include mobile {
+    flex-direction: row;
+    align-items: center;
+    gap: $space-4;
+    padding: 0;
+    overflow-y: visible;
+  }
+}
+
+// ── Profile Image ─────────────────────────────────────────────
+.sidebar__profile {
+  @include flex-center;
+  flex-shrink: 0;
+}
+
+.profile-frame {
+  position: relative;
+  width: 164px;
+  height: 164px;
+  border: 1px solid rgba($color-accent, 0.28);
+
+  @include tablet {
+    width: 140px;
+    height: 140px;
+  }
+
+  @include mobile {
+    width: 88px;
+    height: 88px;
+  }
+}
+
+.profile-frame__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-frame__corner {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  border-color: $color-accent;
+  border-style: solid;
+
+  &--tl { top: -2px;    left: -2px;   border-width: 2px 0 0 2px; }
+  &--tr { top: -2px;    right: -2px;  border-width: 2px 2px 0 0; }
+  &--bl { bottom: -2px; left: -2px;   border-width: 0 0 2px 2px; }
+  &--br { bottom: -2px; right: -2px;  border-width: 0 2px 2px 0; }
+}
+
+// ── Info panel (socials + status) ────────────────────────────
+.sidebar__info {
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+
+  @include mobile {
+    flex: 1;
+    gap: $space-3;
+    min-width: 0;
+  }
+}
+
+// ── Social Links ─────────────────────────────────────────────
+.sidebar__socials {
+  display: flex;
+  align-items: center;
+  gap: $space-5;
+
+  @include mobile {
+    gap: $space-4;
+  }
+}
+
+.sidebar__social-link {
+  display: flex;
+  align-items: center;
+  color: $color-muted;
+  transition: color 200ms ease, transform 180ms ease;
+
+  svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+  }
+
+  &:hover {
+    color: $color-accent;
+    transform: translateY(-2px);
+  }
+
+  @include mobile {
+    svg { width: 20px; height: 20px; }
+  }
+}
+
+// ── Status Block ─────────────────────────────────────────────
+.sidebar__status {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.sidebar__status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: $space-3;
+}
+
+.sidebar__status-label {
+  font-family: $font-main;
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: $color-muted;
+  letter-spacing: 0.09em;
+  flex-shrink: 0;
+}
+
+.sidebar__status-value {
+  font-family: $font-main;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: $color-text;
+  letter-spacing: 0.06em;
+  text-align: right;
+
+  &--online { color: $color-online; }
+  &--open   { color: $color-accent; }
+}
+
+// ── Footer Meta ──────────────────────────────────────────────
+.sidebar__footer {
+  flex-shrink: 0;
+  padding-top: $space-4;
+  border-top: 1px solid $color-border;
+
+  p {
+    font-family: $font-main;
+    font-size: 0.62rem;
+    font-weight: 500;
+    color: $color-text-secondary;
+    letter-spacing: 0.09em;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  @include mobile {
+    display: none;
+  }
+}

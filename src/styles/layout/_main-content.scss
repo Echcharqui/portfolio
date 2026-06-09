@@ -1,0 +1,13 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/breakpoints" as *;
+
+.main-content {
+  flex: 1;
+  min-height: 100vh;
+  overflow-y: auto;
+  background-color: $color-bg;
+
+  @include mobile {
+    min-height: auto;
+  }
+}

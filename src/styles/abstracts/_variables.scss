@@ -1,0 +1,29 @@
+// Colors
+$color-bg:             #080c10;
+$color-surface:        #0d1117;
+$color-accent:         #00e5ff;
+$color-border:         #1a2332;
+$color-text:           #e8edf2;
+$color-muted:          #5a6a7a;
+$color-text-secondary: #8899aa;   // footer meta — brighter than muted
+$color-online:         #4ade80;   // STATUS: ONLINE indicator
+
+// Typography
+$font-main:    "Space Grotesk", system-ui, sans-serif;
+$font-display: "Orbitron", system-ui, sans-serif;
+
+// Spacing scale
+$space-1:  4px;
+$space-2:  8px;
+$space-3:  12px;
+$space-4:  16px;
+$space-5:  24px;
+$space-6:  32px;
+$space-7:  48px;
+$space-8:  64px;
+$space-9:  96px;
+$space-10: 128px;
+
+// Layout
+$header-height: 64px;
+$sidebar-width: 280px;

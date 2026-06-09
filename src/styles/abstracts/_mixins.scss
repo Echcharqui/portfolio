@@ -1,0 +1,49 @@
+@use "variables" as *;
+@use "breakpoints" as *;
+
+// Flex shortcuts
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Cyan glow for accent elements
+@mixin glow($color: $color-accent, $spread: 8px) {
+  box-shadow: 0 0 $spread rgba($color, 0.4);
+}
+
+// 1px border using the standard border color
+@mixin border($side: all) {
+  @if $side == all {
+    border: 1px solid $color-border;
+  } @else {
+    border-#{$side}: 1px solid $color-border;
+  }
+}
+
+// Truncate text to one line
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Screen-reader only
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

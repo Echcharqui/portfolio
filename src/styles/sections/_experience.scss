@@ -1,0 +1,181 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/breakpoints" as *;
+
+// ── Section container ──────────────────────────────────────────
+.experience {
+  padding: $space-9 $space-8;
+  border-top: 1px solid $color-border;
+
+  @include tablet {
+    padding: $space-7 $space-6;
+  }
+
+  @include mobile {
+    padding: $space-6 $space-5;
+  }
+}
+
+// ── Section label (same pattern as About) ─────────────────────
+.experience__label {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+  margin-bottom: $space-8;
+  font-family: $font-display;
+  font-size: 0.62rem;
+  font-weight: 500;
+  color: rgba($color-accent, 0.65);
+  letter-spacing: 0.13em;
+
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: $color-border;
+  }
+}
+
+// ── Timeline ──────────────────────────────────────────────────
+// 32px indicator column keeps the line precisely centered on nodes.
+// One continuous ::before line runs behind all nodes.
+.experience__timeline {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 15px; // center of 32px indicator column (16px) minus 1px line
+    top: 16px;  // starts at first node center
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      rgba($color-accent, 0.25),
+      rgba($color-accent, 0.1) 80%,
+      transparent
+    );
+  }
+
+  @include mobile {
+    &::before { display: none; }
+  }
+}
+
+.experience__entry {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 0 $space-5;
+
+  &:not(:last-child) {
+    margin-bottom: $space-9;
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ── Node ──────────────────────────────────────────────────────
+.experience__indicator {
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.experience__node {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+  border: 1px solid rgba($color-accent, 0.65);
+  background-color: $color-surface;
+  transform: rotate(45deg);
+  position: relative;
+  z-index: 1; // sits above the vertical line
+}
+
+// ── Card ──────────────────────────────────────────────────────
+.experience__card-header {
+  margin-bottom: $space-4;
+}
+
+.experience__company {
+  font-family: $font-main;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: $color-text;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: $space-1;
+}
+
+.experience__role {
+  font-family: $font-main;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: $color-text-secondary;
+  line-height: 1.4;
+  margin-bottom: $space-2;
+}
+
+.experience__meta {
+  display: block;
+  font-family: $font-display;
+  font-size: 0.58rem;
+  font-weight: 500;
+  color: $color-muted;
+  letter-spacing: 0.1em;
+}
+
+// ── Tags ──────────────────────────────────────────────────────
+.experience__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+  margin-bottom: $space-4;
+}
+
+.experience__tag {
+  display: inline-block;
+  font-family: $font-display;
+  font-size: 0.55rem;
+  font-weight: 600;
+  color: rgba($color-accent, 0.7);
+  letter-spacing: 0.1em;
+  padding: 3px $space-2;
+  border: 1px solid rgba($color-accent, 0.2);
+  background-color: rgba($color-accent, 0.04);
+}
+
+// ── Bullets ───────────────────────────────────────────────────
+.experience__bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.experience__bullet {
+  position: relative;
+  padding-left: $space-5;
+  font-family: $font-main;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: $color-text-secondary;
+  line-height: 1.65;
+
+  // Small diamond — mirrors the timeline node shape
+  &::before {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 0.42em; // roughly centers diamond on first line cap-height
+    width: 5px;
+    height: 5px;
+    background-color: rgba($color-accent, 0.35);
+    transform: rotate(45deg);
+  }
+}

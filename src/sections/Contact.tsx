@@ -1,0 +1,84 @@
+const availabilityItems = [
+  'Full-Stack Engineering',
+  'Backend Engineering',
+  'Node.js / TypeScript',
+  'React & React Native',
+  'Remote Opportunities',
+  'International Teams',
+]
+
+const metaItems = [
+  { key: 'SYS-ID', value: 'HE-ENG-2026'           },
+  { key: 'UNIT',   value: 'SOFTWARE ENGINEERING'   },
+  { key: 'STATUS', value: 'ACCEPTING CONNECTIONS'  },
+]
+
+function Contact() {
+  return (
+    <section className="contact" id="contact">
+      <div className="contact__label">CONTACT / TRANSMISSION</div>
+
+      <div className="contact__badge">OPEN FOR WORK</div>
+
+      <h2 className="contact__heading">Let's build reliable systems.</h2>
+
+      <p className="contact__description">
+        I'm open to software engineering opportunities involving backend systems,
+        APIs, microservices, cloud platforms, and production-grade engineering.
+      </p>
+
+      <div className="contact__panel">
+        <div className="contact__panel-left">
+          <div className="contact__panel-header">AVAILABLE FOR</div>
+          <ul className="contact__avail-list">
+            {availabilityItems.map((item) => (
+              <li key={item} className="contact__avail-item">{item}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="contact__panel-right">
+          <div className="contact__panel-header">INITIATE CONTACT</div>
+          <div className="contact__actions">
+            <a href="tel:+212659040789" className="btn btn--primary">
+              Call Me
+            </a>
+            <a href="mailto:echcharqui.dev@gmail.com" className="btn btn--outline">
+              Email Me
+            </a>
+            <a
+              href="https://linkedin.com/in/hamza-echcharqui"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn--outline"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://github.com/Echcharqui"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn--outline"
+            >
+              GitHub
+            </a>
+            <a href="#" className="btn btn--outline">
+              Download CV
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <footer className="contact__footer">
+        {metaItems.map(({ key, value }) => (
+          <span key={key} className="contact__meta-item">
+            <span className="contact__meta-key">{key}:</span>
+            {' '}{value}
+          </span>
+        ))}
+      </footer>
+    </section>
+  )
+}
+
+export default Contact
