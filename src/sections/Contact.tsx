@@ -1,4 +1,6 @@
-import cvFile from '../assets/documents/echcharqui-hamza-cv-en.pdf';
+import cvFile from '../assets/documents/echcharqui-hamza-cv-en.pdf'
+import { motion, useReducedMotion } from 'motion/react'
+import { EASE } from '../components/ui/motionConfig'
 
 const availabilityItems = [
   'Backend Engineering',
@@ -16,13 +18,25 @@ const metaItems = [
 ]
 
 function Contact() {
+  const reduceMotion = useReducedMotion()
+
   return (
     <section className="contact" id="contact">
       <div className="contact__label">CONTACT / TRANSMISSION</div>
 
       <div className="contact__badge">OPEN FOR WORK</div>
 
-      <h2 className="contact__heading">Let's build reliable systems.</h2>
+      <h2 className="contact__heading">
+        Let's build reliable systems.
+        <motion.span
+          className="heading-accent"
+          style={{ transformOrigin: 'left center' }}
+          initial={reduceMotion ? false : { scaleX: 0 }}
+          whileInView={reduceMotion ? undefined : { scaleX: 1 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.5, ease: EASE, delay: 0.2 }}
+        />
+      </h2>
 
       <p className="contact__description">
         Senior Full-Stack Engineer with a backend-first focus — Node.js,

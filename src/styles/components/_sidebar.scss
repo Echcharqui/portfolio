@@ -34,7 +34,7 @@
     background-color: $color-surface;
     border-bottom: 1px solid $color-border;
 
-    span { font-size: 1 rem; }
+    span { font-size: 1rem; }
   }
 }
 
@@ -66,13 +66,19 @@
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 5;
-  border: 1px solid rgba($color-accent, 0.28);
-  overflow: hidden; // contains image scale on hover
+  overflow: hidden; // single clean scope — contains image scale and clips content
+  border: 1px solid rgba($color-accent, 0.25);
   transition: border-color $duration-base $ease-out;
 
   .sidebar__profile:hover & {
     border-color: rgba($color-accent, 0.55);
   }
+}
+
+// Image container — fills the frame absolutely
+.profile-frame__inner {
+  position: absolute;
+  inset: 0;
 }
 
 .profile-frame__img {
@@ -90,17 +96,26 @@
   }
 }
 
+// Tactical corner brackets overlaid on the image — inset so overflow:hidden
+// on the parent never clips them. z-index 2 keeps them above the image layer.
 .profile-frame__corner {
   position: absolute;
-  width: 15px;
-  height: 15px;
-  border-color: $color-accent;
+  width: 20px;
+  height: 20px;
+  border-color: rgba($color-accent, 0.9);
   border-style: solid;
+  z-index: 2;
+  pointer-events: none;
+  transition: border-color $duration-fast $ease-out;
 
-  &--tl { top: -2px;    left: -2px;   border-width: 2px 0 0 2px; }
-  &--tr { top: -2px;    right: -2px;  border-width: 2px 2px 0 0; }
-  &--bl { bottom: -2px; left: -2px;   border-width: 0 0 2px 2px; }
-  &--br { bottom: -2px; right: -2px;  border-width: 0 2px 2px 0; }
+  .sidebar__profile:hover & {
+    border-color: $color-accent;
+  }
+
+  &--tl { top: 10px;    left: 10px;   border-width: 2px 0 0 2px; }
+  &--tr { top: 10px;    right: 10px;  border-width: 2px 2px 0 0; }
+  &--bl { bottom: 10px; left: 10px;   border-width: 0 0 2px 2px; }
+  &--br { bottom: 10px; right: 10px;  border-width: 0 2px 2px 0; }
 }
 
 // ── Info panel (socials + status) ────────────────────────────

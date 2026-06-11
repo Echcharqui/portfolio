@@ -30,3 +30,13 @@
     background: $color-muted;
   }
 }
+
+// Heading accent line — drawn left-to-right by the scaleX animation in Motion.
+// transform-origin is set via the element's style prop, not here.
+.heading-accent {
+  display: block;
+  width: 56px;
+  height: 2px;
+  background-color: $color-accent;
+  margin-top: $space-2;
+}

@@ -1,3 +1,6 @@
+import { motion, useReducedMotion } from 'motion/react'
+import { containerVariants, itemVariants } from '../components/ui/motionConfig'
+
 const skillGroups = [
   {
     id:     'backend',
@@ -46,22 +49,30 @@ const skillGroups = [
 ]
 
 function Skills() {
+  const reduceMotion = useReducedMotion()
+
   return (
     <section className="skills" id="skills">
       <div className="skills__label">SKILLS / CAPABILITIES</div>
 
-      <div className="skills__grid">
+      <motion.div
+        className="skills__grid"
+        initial={reduceMotion ? false : 'hidden'}
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={containerVariants}
+      >
         {skillGroups.map(({ id, label, skills }) => (
-          <div key={id} className="skills__group">
+          <motion.div key={id} className="skills__group reveal-item" variants={itemVariants}>
             <div className="skills__group-header">{label}</div>
             <ul className="skills__items">
               {skills.map((skill) => (
                 <li key={skill} className="skills__item">{skill}</li>
               ))}
             </ul>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   )
 }

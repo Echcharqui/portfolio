@@ -1,3 +1,6 @@
+import { motion, useReducedMotion } from 'motion/react'
+import { containerVariants, itemVariants } from '../components/ui/motionConfig'
+
 interface Engagement {
   name:   string
   period: string
@@ -61,13 +64,21 @@ const entries: Entry[] = [
 ]
 
 function Experience() {
+  const reduceMotion = useReducedMotion()
+
   return (
     <section className="experience" id="experience">
       <div className="experience__label">EXPERIENCE / SYSTEMS</div>
 
-      <div className="experience__timeline">
+      <motion.div
+        className="experience__timeline"
+        initial={reduceMotion ? false : 'hidden'}
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        variants={containerVariants}
+      >
         {entries.map(({ company, role, date, meta, engagements, tags, bullets }) => (
-          <div key={company} className="experience__entry">
+          <motion.div key={company} className="experience__entry reveal-item" variants={itemVariants}>
             <div className="experience__indicator">
               <div className="experience__node" />
             </div>
@@ -101,9 +112,9 @@ function Experience() {
                 ))}
               </ul>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   )
 }

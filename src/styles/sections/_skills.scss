@@ -1,5 +1,6 @@
 @use "../abstracts/variables" as *;
 @use "../abstracts/breakpoints" as *;
+@use "../abstracts/animations" as *;
 
 // ── Section container ──────────────────────────────────────────
 .skills {
@@ -57,6 +58,14 @@
 // ── Skill group ───────────────────────────────────────────────
 .skills__group {
   padding: $space-5;
+  transition:
+    background-color $duration-fast $ease-out,
+    box-shadow       $duration-fast $ease-out;
+
+  &:hover {
+    background-color: rgba($color-surface, 0.6);
+    box-shadow: inset 3px 0 0 rgba($color-accent, 0.35);
+  }
 
   @include desktop {
     padding: $space-6;
@@ -126,6 +135,16 @@
   border: 1px solid $color-border;
   background-color: rgba($color-surface, 0.6);
   white-space: nowrap;
+  transition:
+    border-color     $duration-fast $ease-out,
+    background-color $duration-fast $ease-out,
+    color            $duration-fast $ease-out;
+
+  &:hover {
+    border-color: rgba($color-accent, 0.4);
+    background-color: rgba($color-accent, 0.06);
+    color: $color-text;
+  }
 
   @include mobile {
     white-space: normal;

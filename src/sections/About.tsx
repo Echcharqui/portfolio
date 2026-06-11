@@ -1,3 +1,6 @@
+import { motion, useReducedMotion } from 'motion/react'
+import { containerVariants, itemVariants, EASE } from '../components/ui/motionConfig'
+
 const infoCards = [
   {
     title:   'Backend-Oriented Full-Stack',
@@ -14,12 +17,22 @@ const infoCards = [
 ]
 
 function About() {
+  const reduceMotion = useReducedMotion()
+
   return (
     <section className="about" id="about">
       <div className="about__label">ABOUT / PROFILE</div>
 
       <h2 className="about__heading">
         Engineering reliable systems from backend architecture to user-facing products.
+        <motion.span
+          className="heading-accent"
+          style={{ transformOrigin: 'left center' }}
+          initial={reduceMotion ? false : { scaleX: 0 }}
+          whileInView={reduceMotion ? undefined : { scaleX: 1 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.5, ease: EASE, delay: 0.2 }}
+        />
       </h2>
 
       <div className="about__body">
@@ -39,14 +52,20 @@ function About() {
         </p>
       </div>
 
-      <div className="about__cards">
+      <motion.div
+        className="about__cards"
+        initial={reduceMotion ? false : 'hidden'}
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={containerVariants}
+      >
         {infoCards.map(({ title, content }) => (
-          <div key={title} className="about__card">
+          <motion.div key={title} className="about__card" variants={itemVariants}>
             <h3 className="about__card-title">{title}</h3>
             <p className="about__card-content">{content}</p>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   )
 }

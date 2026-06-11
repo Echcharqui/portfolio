@@ -1,3 +1,6 @@
+import { motion, useReducedMotion } from 'motion/react'
+import { containerVariants, itemVariants, EASE } from '../components/ui/motionConfig'
+
 const projects = [
   {
     number:  'PROJECT 01',
@@ -72,6 +75,8 @@ const projects = [
 ]
 
 function Projects() {
+  const reduceMotion = useReducedMotion()
+
   return (
     <section className="projects" id="projects">
       <div className="projects__label">PROJECTS / DEPLOYMENTS</div>
@@ -80,6 +85,14 @@ function Projects() {
         <h2 className="projects__heading">
           Selected engineering work — enterprise platforms, SaaS products, and
           mobile applications delivered in production.
+          <motion.span
+            className="heading-accent"
+            style={{ transformOrigin: 'left center' }}
+            initial={reduceMotion ? false : { scaleX: 0 }}
+            whileInView={reduceMotion ? undefined : { scaleX: 1 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.5, ease: EASE, delay: 0.2 }}
+          />
         </h2>
         <p className="projects__lead">
           From a Premier League sports platform and global enterprise delivery to
@@ -88,9 +101,15 @@ function Projects() {
         </p>
       </div>
 
-      <div className="projects__list">
+      <motion.div
+        className="projects__list"
+        initial={reduceMotion ? false : 'hidden'}
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.08 }}
+        variants={containerVariants}
+      >
         {projects.map(({ number, name, meta, tags, description, contribution }) => (
-          <article key={name} className="project-entry">
+          <motion.article key={name} className="project-entry reveal-item" variants={itemVariants}>
             <div className="project-entry__header">
               <span className="project-entry__number">{number}</span>
               <div className="project-entry__tags">
@@ -116,9 +135,9 @@ function Projects() {
                 </ul>
               </div>
             </div>
-          </article>
+          </motion.article>
         ))}
-      </div>
+      </motion.div>
     </section>
   )
 }

@@ -41,7 +41,9 @@ function Sidebar() {
             <span className="profile-frame__corner profile-frame__corner--tr" />
             <span className="profile-frame__corner profile-frame__corner--bl" />
             <span className="profile-frame__corner profile-frame__corner--br" />
-            <img src={profileImg} alt="Echcharqui" className="profile-frame__img" />
+            <div className="profile-frame__inner">
+              <img src={profileImg} alt="Echcharqui" className="profile-frame__img" />
+            </div>
           </div>
         </div>
 

@@ -1,23 +1,2 @@
-@use "../abstracts/animations" as *;
-
-// Scroll-reveal wrapper applied by RevealSection in MainContent.
-//
-// Default state is always fully visible — safe without JS and
-// for prefers-reduced-motion users. Animation only activates
-// when the browser confirms the user allows motion.
-.reveal-section {
-  @media (prefers-reduced-motion: no-preference) {
-    opacity: 0;
-    transform: translateY(24px);
-    transition:
-      opacity   $duration-slow $ease-out,
-      transform $duration-slow $ease-out;
-    will-change: opacity, transform;
-
-    &.is-visible {
-      opacity: 1;
-      transform: none;
-      will-change: auto;
-    }
-  }
-}
+// Scroll-reveal is handled by the SectionReveal component (Motion for React).
+// Animation runs entirely via inline styles — no CSS rules needed here.
