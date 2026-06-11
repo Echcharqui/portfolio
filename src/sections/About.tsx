@@ -24,7 +24,7 @@ function About() {
 
       <div className="about__body">
         <p className="about__para">
-          Morocco-based Senior Full-Stack Software Engineer with over 7 years of
+          Morocco-based Senior Full-Stack Software Engineer with over 6 years of
           experience designing and delivering production systems across backend,
           frontend, and mobile stacks. My core is backend engineering — Node.js
           and TypeScript, RESTful and GraphQL APIs, microservices, and

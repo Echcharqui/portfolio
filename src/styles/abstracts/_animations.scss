@@ -1,13 +1,15 @@
 // Durations
 $duration-fast:   150ms;
+$duration-normal: 300ms;  // alias for $duration-base
 $duration-base:   300ms;
 $duration-slow:   600ms;
 $duration-slower: 1200ms;
 
 // Easings
-$ease-out:      cubic-bezier(0.22, 1, 0.36, 1);
-$ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
-$ease-bounce:   cubic-bezier(0.34, 1.56, 0.64, 1);
+$ease-out:      cubic-bezier(0.22, 1, 0.36, 1);   // decelerate — entries
+$ease-in:       cubic-bezier(0.4, 0, 1, 1);        // accelerate — exits
+$ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);      // standard — state changes
+$ease-bounce:   cubic-bezier(0.34, 1.56, 0.64, 1); // overshoot — emphasis
 
 // Keyframes
 @keyframes fade-in {

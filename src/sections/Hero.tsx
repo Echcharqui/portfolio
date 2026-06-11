@@ -1,10 +1,12 @@
+import cvFile from '../assets/documents/echcharqui-hamza-cv-en.pdf';
+
 const stats = [
-  { value: '7+',       label: 'YEARS EXPERIENCE'  },
-  { value: 'NODE.JS',  label: 'TYPESCRIPT'         },
-  { value: 'REACT',    label: 'REACT NATIVE'       },
-  { value: 'APIS',     label: 'MICROSERVICES'      },
-  { value: 'AWS',      label: 'AZURE'              },
-  { value: 'MOROCCO',  label: 'INTERNATIONAL'      },
+  { value: '6+', label: 'YEARS EXPERIENCE' },
+  { value: 'NODE.JS', label: 'TYPESCRIPT' },
+  { value: 'REACT', label: 'REACT NATIVE' },
+  { value: 'APIS', label: 'MICROSERVICES' },
+  { value: 'AWS', label: 'AZURE' },
+  { value: 'MOROCCO', label: 'INTERNATIONAL' },
 ]
 
 function Hero() {
@@ -22,7 +24,7 @@ function Hero() {
         </h1>
 
         <p className="hero__bio">
-          Senior Full-Stack Software Engineer with over 7 years of experience
+          Senior Full-Stack Software Engineer with over 6 years of experience
           building reliable, production-grade systems across backend and frontend
           stacks. Specializing in Node.js and TypeScript for server-side
           architecture — RESTful and GraphQL APIs, microservices, and
@@ -42,7 +44,14 @@ function Hero() {
 
         <div className="hero__actions">
           <a href="#projects" className="btn btn--primary">View Projects</a>
-          <a href="#" className="btn btn--outline">Download CV</a>
+          <a
+            href={cvFile}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn--outline"
+          >
+            Download CV
+          </a>
         </div>
       </div>
     </section>

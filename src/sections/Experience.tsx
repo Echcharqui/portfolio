@@ -1,38 +1,61 @@
-const entries = [
+interface Engagement {
+  name:   string
+  period: string
+}
+
+interface Entry {
+  company:      string
+  role:         string
+  date?:        string
+  meta:         string
+  engagements?: Engagement[]
+  tags:         string[]
+  bullets:      string[]
+}
+
+const entries: Entry[] = [
   {
     company: 'NTT DATA',
     role:    'Senior Full-Stack Software Engineer',
-    meta:    'Enterprise / International',
-    tags:    ['SYS', 'ARCH', 'API', 'CLOUD', 'EDA'],
+    date:    'OCT 2024 — APR 2026',
+    meta:    'Enterprise / International Delivery',
+    tags:    ['BACKEND', 'NODE', 'AZURE', 'REST', 'EDA'],
     bullets: [
-      'Enterprise and international project delivery across backend and frontend stacks.',
-      'Backend architecture with Node.js and TypeScript — RESTful and event-driven APIs, microservices.',
-      'Azure cloud infrastructure, service configuration, and production-grade system deployment.',
-      'Frontend delivery with React in cross-functional, multi-team engineering environments.',
+      'Owned backend API development across enterprise client projects — Node.js and TypeScript services covering RESTful interfaces, business logic layers, and third-party system integrations.',
+      'Designed and delivered microservices with event-driven communication patterns, decoupling service responsibilities and enabling reliable asynchronous processing across distributed backend systems.',
+      'Deployed and operated services on Azure — App Services, storage, and messaging infrastructure — with direct ownership over environment configuration, CI/CD pipelines, and production releases.',
+      'Collaborated with engineering teams across Europe and Asia-Pacific within NTT DATA\'s international project structure, contributing to architectural reviews, technical specifications, and sprint delivery.',
     ],
   },
   {
-    company: 'Arsenal FC Project',
-    role:    'Full-Stack / Backend Engineering Contribution',
-    meta:    'Sport Tech / Product Engineering',
-    tags:    ['ARCH', 'API', 'EDA', 'SVC'],
+    company: 'Arsenal FC',
+    role:    'Backend Engineer — Sports Technology Platform',
+    meta:    'Sport Tech / High-Traffic Real-Time System',
+    tags:    ['MICROSERVICES', 'API', 'BULLMQ', 'EDA', 'QUEUE'],
     bullets: [
-      'Microservice architecture design and delivery for a high-visibility sports technology system.',
-      'API integrations and event-driven communication across distributed backend services.',
-      'Job queue coordination with BullMQ for real-time service operations and task scheduling.',
-      'Service-oriented architecture built for production-level reliability and scalability.',
+      'Designed and built backend microservices for a high-visibility sports technology platform — defining service contracts, data flow boundaries, and component responsibilities across a distributed architecture.',
+      'Integrated external sports data providers and third-party APIs into the platform backend, handling data normalisation, validation, and reliable delivery to downstream service consumers.',
+      'Implemented job queue infrastructure with BullMQ — asynchronous task processing, retry logic, and scheduled background operations built to handle match-day operational load and event spikes.',
+      'Built for production reliability under live event traffic conditions — fault-tolerant service design, queue durability, and consistent system behaviour during high-concurrency periods.',
     ],
   },
   {
     company: 'Product & Startup Engagements',
-    role:    'Full-Stack Engineer',
-    meta:    'Various / Mobile & Web Product Work',
-    tags:    ['MOBILE', 'API', 'WEB', 'PROD'],
+    role:    'Full-Stack Engineer — Web & Mobile',
+    date:    'MAR 2020 — MAR 2025',
+    meta:    'Product Engineering / Web & Mobile',
+    engagements: [
+      { name: 'HiHello',    period: 'MAR 2020 — MAY 2022' },
+      { name: 'Beebs',      period: 'JUN 2022 — SEP 2024' },
+      { name: 'EasyTrip',   period: 'OCT 2024 — JAN 2025' },
+      { name: 'Consortium', period: 'JAN 2025 — MAR 2025' },
+    ],
+    tags:    ['MOBILE', 'RN', 'API', 'NODE', 'REACT'],
     bullets: [
-      'React Native mobile application development across full product cycles.',
-      'Frontend and backend delivery in fast-moving startup and product engineering environments.',
-      'Cross-functional collaboration spanning product, design, and engineering teams.',
-      'API-to-interface ownership — from backend architecture through to user-facing delivery.',
+      'Built and shipped React Native mobile applications across full product cycles — from API design and backend service setup through to App Store and Google Play delivery.',
+      'Owned the full stack end-to-end: designed backend routes, data models, and service logic in Node.js, then built the React and React Native interfaces that consumed them — reducing hand-off friction in small-team environments.',
+      'Collaborated directly with product managers and designers in fast-moving startup contexts, contributing to technical scoping, sprint planning, and delivery prioritisation.',
+      'Delivered complete web and mobile products as the primary engineer, maintaining frontend and backend codebases concurrently across multiple short-cycle engagements.',
     ],
   },
 ]
@@ -43,7 +66,7 @@ function Experience() {
       <div className="experience__label">EXPERIENCE / SYSTEMS</div>
 
       <div className="experience__timeline">
-        {entries.map(({ company, role, meta, tags, bullets }) => (
+        {entries.map(({ company, role, date, meta, engagements, tags, bullets }) => (
           <div key={company} className="experience__entry">
             <div className="experience__indicator">
               <div className="experience__node" />
@@ -53,7 +76,17 @@ function Experience() {
               <header className="experience__card-header">
                 <h3 className="experience__company">{company}</h3>
                 <p className="experience__role">{role}</p>
+                {date && <span className="experience__date">{date}</span>}
                 <span className="experience__meta">{meta}</span>
+                {engagements && (
+                  <ul className="experience__engagements">
+                    {engagements.map(({ name, period }) => (
+                      <li key={name} className="experience__engagement">
+                        {name} · {period}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </header>
 
               <div className="experience__tags">

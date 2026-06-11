@@ -1,0 +1,166 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/breakpoints" as *;
+@use "../abstracts/animations" as *;
+
+// Scroll lock — prevent main content from scrolling behind open overlay
+body.is-menu-open .main-content {
+  overflow: hidden;
+}
+
+// Hide fixed CTA button when overlay is open
+body.is-menu-open .mobile-cta {
+  opacity: 0;
+  pointer-events: none;
+}
+
+// ── Overlay backdrop ──────────────────────────────────────────
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background-color: $color-bg;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $space-6;
+  overflow-y: auto;
+
+  // Closed state — invisible and inert
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity    $duration-base $ease-out,
+    visibility $duration-base $ease-out;
+
+  // Subtle vertical entry — rises 8px into position on open
+  @media (prefers-reduced-motion: no-preference) {
+    transform: translateY(8px);
+    transition:
+      opacity    $duration-base $ease-out,
+      visibility $duration-base $ease-out,
+      transform  $duration-base $ease-out;
+  }
+
+  &--open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    @media (prefers-reduced-motion: no-preference) {
+      transform: translateY(0);
+    }
+  }
+}
+
+// ── Navigation block ──────────────────────────────────────────
+.menu-overlay__nav {
+  text-align: center;
+  width: 100%;
+}
+
+.menu-overlay__label {
+  font-family: $font-display;
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: $color-muted;
+  letter-spacing: 0.25em;
+  margin-bottom: $space-5;
+}
+
+// Thin horizontal rule above/below nav list
+.menu-overlay__rule {
+  width: 60px;
+  height: 1px;
+  background-color: rgba($color-accent, 0.2);
+  margin: $space-4 auto;
+}
+
+.menu-overlay__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+// ── Nav item — stagger-animated on open ───────────────────────
+// Items start hidden with a translateY offset; stagger delay is
+// applied via inline style in MenuOverlay.tsx.
+// Reduced-motion users see items appear instantly (no CSS applied).
+.menu-overlay__item {
+  .menu-overlay--open & {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+      opacity   260ms $ease-out,
+      transform 260ms $ease-out;
+  }
+}
+
+// ── Nav link ──────────────────────────────────────────────────
+.menu-overlay__link {
+  display: block;
+  font-family: $font-display;
+  font-size: clamp(1.5rem, 3.2vw, 2.5rem);
+  font-weight: 700;
+  color: $color-text;
+  text-decoration: none;
+  letter-spacing: 0.07em;
+  padding: $space-3 $space-7;
+  line-height: 1.2;
+
+  transition: color $duration-fast ease;
+
+  &:hover {
+    color: $color-accent;
+  }
+
+  &:focus-visible {
+    color: $color-accent;
+    outline: none;
+  }
+
+  @include mobile {
+    padding: $space-2 $space-5;
+  }
+}
+
+// ── Footer social links ───────────────────────────────────────
+.menu-overlay__footer {
+  display: flex;
+  align-items: center;
+  gap: $space-6;
+
+  @include mobile {
+    gap: $space-5;
+  }
+}
+
+.menu-overlay__social {
+  display: flex;
+  align-items: center;
+  color: $color-muted;
+  transition: color $duration-fast ease;
+
+  svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+  }
+
+  &:hover {
+    color: $color-accent;
+  }
+
+  &:focus-visible {
+    color: $color-accent;
+    outline: 2px solid $color-accent;
+    outline-offset: 4px;
+  }
+}

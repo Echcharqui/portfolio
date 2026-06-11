@@ -29,7 +29,7 @@
     position: static;
     border-right: none;
     border-bottom: 1px solid $color-border;
-    padding: $space-4;
+    padding: 68px $space-4 $space-5; // 68px top = height of fixed logo header
     overflow: visible;
   }
 }

@@ -11,3 +11,10 @@
     min-height: auto;
   }
 }
+
+// Offset anchor scroll so sections don't land under the fixed mobile header
+@include mobile {
+  .hero, .about, .experience, .projects, .skills, .contact {
+    scroll-margin-top: 68px;
+  }
+}

@@ -1,0 +1,59 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/animations" as *;
+@use "../abstracts/breakpoints" as *;
+
+.menu-btn {
+  position: fixed;
+  top: $space-5;
+  // On screens wider than the 1440px container, pull the button inward so it
+  // aligns with the container's right edge rather than the browser edge.
+  right: max(#{$space-5}, calc((100vw - 1440px) / 2 + #{$space-5}));
+  z-index: 200;
+
+  width: 44px;
+  height: 44px;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: $color-surface;
+  border: 1px solid $color-accent;
+  cursor: pointer;
+
+  color: $color-text-secondary;
+
+  transition:
+    border-color    $duration-fast ease,
+    color           $duration-fast ease,
+    background-color $duration-fast ease;
+
+  &:hover {
+    border-color: rgba($color-accent, 0.5);
+    color: $color-text;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-accent;
+    outline-offset: 3px;
+  }
+
+  &--open {
+    border-color: rgba($color-accent, 0.4);
+    color: $color-text;
+  }
+
+  // Mobile: align with 68px sidebar logo row (btn center = row center = 34px from top)
+  @include mobile {
+    top: $space-3;   // 12px → center at 12 + 22 = 34px
+    right: $space-4; // 16px — matches sidebar horizontal padding
+  }
+}
+
+.menu-btn__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}

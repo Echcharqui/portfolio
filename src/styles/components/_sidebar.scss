@@ -1,6 +1,7 @@
 @use "../abstracts/variables" as *;
 @use "../abstracts/breakpoints" as *;
 @use "../abstracts/mixins" as *;
+@use "../abstracts/animations" as *;
 
 // ── Logo ──────────────────────────────────────────────────────
 .sidebar__logo {
@@ -10,7 +11,7 @@
 
   span {
     font-family: $font-display;
-    font-size: 1.05rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: $color-accent;
     letter-spacing: 0.12em;
@@ -18,10 +19,22 @@
   }
 
   @include mobile {
-    padding-bottom: $space-3;
-    margin-bottom: $space-3;
+    // Fixed header bar — logo + menu button stay visible while scrolling
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 90; // below overlay (100) and menu-btn (200)
+    height: 68px;
+    display: flex;
+    align-items: center;
+    padding: 0 $space-4;
+    padding-right: 60px; // clear fixed menu button
+    margin-bottom: 0;
+    background-color: $color-surface;
+    border-bottom: 1px solid $color-border;
 
-    span { font-size: 0.95rem; }
+    span { font-size: 1 rem; }
   }
 }
 
@@ -30,15 +43,15 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: $space-6;
+  gap: $space-7;
   padding: $space-5 0;
   overflow-y: auto;
 
   @include mobile {
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    gap: $space-4;
-    padding: 0;
+    gap: $space-5;
+    padding: $space-4 0 0;
     overflow-y: visible;
   }
 }
@@ -51,18 +64,14 @@
 
 .profile-frame {
   position: relative;
-  width: 164px;
-  height: 164px;
+  width: 100%;
+  aspect-ratio: 4 / 5;
   border: 1px solid rgba($color-accent, 0.28);
+  overflow: hidden; // contains image scale on hover
+  transition: border-color $duration-base $ease-out;
 
-  @include tablet {
-    width: 140px;
-    height: 140px;
-  }
-
-  @include mobile {
-    width: 88px;
-    height: 88px;
+  .sidebar__profile:hover & {
+    border-color: rgba($color-accent, 0.55);
   }
 }
 
@@ -71,12 +80,20 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform $duration-slow $ease-out;
+
+    .sidebar__profile:hover & {
+      transform: scale(1.04);
+    }
+  }
 }
 
 .profile-frame__corner {
   position: absolute;
-  width: 13px;
-  height: 13px;
+  width: 15px;
+  height: 15px;
   border-color: $color-accent;
   border-style: solid;
 
@@ -93,8 +110,9 @@
   gap: $space-5;
 
   @include mobile {
-    flex: 1;
-    gap: $space-3;
+    flex: initial;
+    width: 100%;
+    gap: $space-4;
     min-width: 0;
   }
 }
@@ -103,10 +121,11 @@
 .sidebar__socials {
   display: flex;
   align-items: center;
-  gap: $space-5;
+  justify-content: center;
+  gap: $space-6;
 
   @include mobile {
-    gap: $space-4;
+    gap: $space-5;
   }
 }
 
@@ -117,8 +136,8 @@
   transition: color 200ms ease, transform 180ms ease;
 
   svg {
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
     display: block;
   }
 
@@ -127,16 +146,13 @@
     transform: translateY(-2px);
   }
 
-  @include mobile {
-    svg { width: 20px; height: 20px; }
-  }
 }
 
 // ── Status Block ─────────────────────────────────────────────
 .sidebar__status {
   display: flex;
   flex-direction: column;
-  gap: $space-2;
+  gap: $space-4;
 }
 
 .sidebar__status-row {
@@ -144,11 +160,16 @@
   justify-content: space-between;
   align-items: baseline;
   gap: $space-3;
+
+  @include mobile {
+    justify-content: flex-start;
+    gap: $space-4;
+  }
 }
 
 .sidebar__status-label {
   font-family: $font-main;
-  font-size: 0.68rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: $color-muted;
   letter-spacing: 0.09em;
@@ -157,7 +178,7 @@
 
 .sidebar__status-value {
   font-family: $font-main;
-  font-size: 0.68rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: $color-text;
   letter-spacing: 0.06em;
@@ -165,6 +186,10 @@
 
   &--online { color: $color-online; }
   &--open   { color: $color-accent; }
+
+  @include mobile {
+    text-align: left;
+  }
 }
 
 // ── Footer Meta ──────────────────────────────────────────────
@@ -175,7 +200,7 @@
 
   p {
     font-family: $font-main;
-    font-size: 0.62rem;
+    font-size: 0.75rem;
     font-weight: 500;
     color: $color-text-secondary;
     letter-spacing: 0.09em;
@@ -184,6 +209,6 @@
   }
 
   @include mobile {
-    display: none;
+    padding-top: $space-3;
   }
 }

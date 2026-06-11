@@ -1,16 +1,18 @@
+import cvFile from '../assets/documents/echcharqui-hamza-cv-en.pdf';
+
 const availabilityItems = [
-  'Full-Stack Engineering',
   'Backend Engineering',
   'Node.js / TypeScript',
   'React & React Native',
+  'Full-Stack Engineering',
   'Remote Opportunities',
   'International Teams',
 ]
 
 const metaItems = [
-  { key: 'SYS-ID', value: 'HE-ENG-2026'           },
-  { key: 'UNIT',   value: 'SOFTWARE ENGINEERING'   },
-  { key: 'STATUS', value: 'ACCEPTING CONNECTIONS'  },
+  { key: 'SYS-ID', value: 'HE-ENG-2026' },
+  { key: 'UNIT', value: 'BACKEND ENGINEERING' },
+  { key: 'STATUS', value: 'OPEN — SENIOR ROLES' },
 ]
 
 function Contact() {
@@ -23,8 +25,10 @@ function Contact() {
       <h2 className="contact__heading">Let's build reliable systems.</h2>
 
       <p className="contact__description">
-        I'm open to software engineering opportunities involving backend systems,
-        APIs, microservices, cloud platforms, and production-grade engineering.
+        Senior Full-Stack Engineer with a backend-first focus — Node.js,
+        TypeScript, microservices, and cloud infrastructure across AWS and Azure.
+        Available remotely for permanent or contract engagements with
+        international teams.
       </p>
 
       <div className="contact__panel">
@@ -62,7 +66,13 @@ function Contact() {
             >
               GitHub
             </a>
-            <a href="#" className="btn btn--outline">
+
+            <a
+              href={cvFile}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn--outline"
+            >
               Download CV
             </a>
           </div>

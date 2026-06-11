@@ -10,7 +10,12 @@ $border-accent: rgba($color-accent, 0.18);
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
-  padding: $space-9 $space-8;
+  padding: $space-8 $space-7;
+
+  @include xl {
+    padding-left: $space-8;
+    padding-right: $space-8;
+  }
 
   @include tablet {
     padding: $space-7 $space-6;
@@ -28,19 +33,19 @@ $border-accent: rgba($color-accent, 0.18);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: $space-8;
+  margin-bottom: $space-6;
 
   @include mobile {
     flex-direction: column;
     align-items: flex-start;
     gap: $space-1;
-    margin-bottom: $space-5;
+    margin-bottom: $space-4;
   }
 }
 
 .hero__eyebrow {
   font-family: $font-display;
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   font-weight: 500;
   color: $color-muted;
   letter-spacing: 0.13em;
@@ -48,9 +53,9 @@ $border-accent: rgba($color-accent, 0.18);
 
 .hero__sys {
   font-family: $font-display;
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  color: rgba($color-accent, 0.6);
+  color: rgba($color-accent, 0.8);
   letter-spacing: 0.13em;
 }
 
@@ -62,7 +67,11 @@ $border-accent: rgba($color-accent, 0.18);
   color: $color-text;
   line-height: 1.0;
   letter-spacing: -0.025em;
-  margin: 0 0 $space-5;
+  margin: 0 0 $space-4;
+
+  @include mobile {
+    font-size: clamp(2.2rem, 9vw, 3rem);
+  }
 }
 
 .hero__title-line {
@@ -76,8 +85,8 @@ $border-accent: rgba($color-accent, 0.18);
   font-weight: 400;
   color: $color-text-secondary;
   line-height: 1.75;
-  max-width: 640px;
-  margin-bottom: $space-8;
+  max-width: 720px;
+  margin-bottom: $space-5;
 
   @include tablet {
     max-width: 100%;
@@ -85,7 +94,7 @@ $border-accent: rgba($color-accent, 0.18);
 
   @include mobile {
     font-size: 0.9rem;
-    margin-bottom: $space-6;
+    margin-bottom: $space-5;
     max-width: 100%;
   }
 }
@@ -97,8 +106,8 @@ $border-accent: rgba($color-accent, 0.18);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   list-style: none;
-  max-width: 640px;
-  margin-bottom: $space-8;
+  max-width: 720px;
+  margin-bottom: $space-5;
   border-top: 1px solid $border-accent;
   border-left: 1px solid $border-accent;
 
@@ -109,7 +118,7 @@ $border-accent: rgba($color-accent, 0.18);
   @include mobile {
     grid-template-columns: repeat(2, 1fr);
     max-width: 100%;
-    margin-bottom: $space-6;
+    margin-bottom: $space-5;
   }
 }
 
@@ -136,7 +145,7 @@ $border-accent: rgba($color-accent, 0.18);
 
 .hero__stat-label {
   font-family: $font-display;
-  font-size: 0.58rem;
+  font-size: 0.72rem;
   font-weight: 500;
   color: $color-muted;
   letter-spacing: 0.1em;

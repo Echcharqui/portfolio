@@ -18,6 +18,9 @@
 @use "components/sidebar" as sidebar-component;
 @use "components/mobile-cta";
 @use "components/buttons";
+@use "components/menu-button";
+@use "components/menu-overlay";
+@use "components/reveal";
 
 // Sections
 @use "sections/hero";

@@ -3,15 +3,20 @@
 
 // ── Section container ──────────────────────────────────────────
 .contact {
-  padding: $space-9 $space-8 $space-10;
+  padding: $space-8 $space-7;
   border-top: 1px solid $color-border;
 
+  @include xl {
+    padding-left: $space-8;
+    padding-right: $space-8;
+  }
+
   @include tablet {
-    padding: $space-7 $space-6 $space-9;
+    padding: $space-7 $space-6;
   }
 
   @include mobile {
-    padding: $space-6 $space-5 $space-8;
+    padding: $space-6 $space-5 88px; // extra bottom clears fixed mobile CTA button
   }
 }
 
@@ -20,11 +25,11 @@
   display: flex;
   align-items: center;
   gap: $space-4;
-  margin-bottom: $space-7;
+  margin-bottom: $space-5;
   font-family: $font-display;
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  color: rgba($color-accent, 0.65);
+  color: rgba($color-accent, 0.8);
   letter-spacing: 0.13em;
 
   &::after {
@@ -44,11 +49,11 @@
   border: 1px solid rgba($color-online, 0.35);
   background-color: rgba($color-online, 0.05);
   font-family: $font-display;
-  font-size: 0.57rem;
+  font-size: 0.72rem;
   font-weight: 600;
   color: $color-online;
   letter-spacing: 0.12em;
-  margin-bottom: $space-5;
+  margin-bottom: $space-4;
 
   // Status dot
   &::before {
@@ -83,6 +88,10 @@
   @include tablet {
     max-width: 100%;
   }
+
+  @include mobile {
+    max-width: 100%;
+  }
 }
 
 // ── Two-column panel ───────────────────────────────────────────
@@ -90,8 +99,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   border: 1px solid $color-border;
-  margin-top: $space-7;
-  margin-bottom: $space-7;
+  margin-top: $space-6;
+  margin-bottom: $space-5;
+  max-width: 900px;
 
   @include below-desktop {
     grid-template-columns: 1fr;
@@ -121,7 +131,7 @@
   gap: $space-3;
   margin-bottom: $space-4;
   font-family: $font-display;
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: $color-text;
   letter-spacing: 0.12em;
@@ -138,7 +148,7 @@
 .contact__avail-list {
   display: flex;
   flex-wrap: wrap;
-  gap: $space-2;
+  gap: $space-3;
   list-style: none;
 }
 
@@ -147,7 +157,7 @@
   font-size: 0.8rem;
   font-weight: 500;
   color: $color-text-secondary;
-  padding: 4px $space-3;
+  padding: 6px $space-3;
   border: 1px solid $color-border;
   background-color: rgba($color-surface, 0.5);
 }
@@ -167,11 +177,15 @@
   gap: $space-3 $space-6;
   padding-top: $space-4;
   border-top: 1px solid $color-border;
+
+  @include mobile {
+    gap: $space-3 $space-4;
+  }
 }
 
 .contact__meta-item {
   font-family: $font-display;
-  font-size: 0.58rem;
+  font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.1em;
   color: $color-text-secondary;
