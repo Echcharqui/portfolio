@@ -55,4 +55,9 @@
       outline-offset: 3px;
     }
   }
+
+  &--sm {
+    padding: 10px $space-4;
+    font-size: 0.85rem;
+  }
 }

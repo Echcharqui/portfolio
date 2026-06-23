@@ -1,7 +1,15 @@
-import { motion, useReducedMotion } from 'motion/react'
-import { containerVariants, itemVariants, EASE } from '../components/ui/motionConfig'
+import PageShell from '../layouts/PageShell'
 
-const projects = [
+interface Project {
+  number:       string
+  name:         string
+  meta:         string
+  tags:         string[]
+  description:  string
+  contribution: string[]
+}
+
+const projects: Project[] = [
   {
     number:  'PROJECT 01',
     name:    'Arsenal FC Platform',
@@ -60,56 +68,30 @@ const projects = [
   },
   {
     number:  'PROJECT 05',
-    name:    'Consortium Mobile Platform',
+    name:    'Consortium / EasyTrip Mobile Platforms',
     meta:    'React Native / Node.js / End-to-End Delivery',
     tags:    ['REACT-NATIVE', 'NODE', 'API', 'MOBILE', 'FULLSTACK'],
     description:
-      'React Native mobile application and Node.js backend service layer, designed and delivered end-to-end as the primary engineer across both codebases. The engineering challenge was full ownership of two layers simultaneously — maintaining a coherent API contract, consistent data model, and stable deployment pipeline without a separate backend team.',
+      'React Native mobile applications and Node.js backend service layers, designed and delivered end-to-end as the primary engineer across both codebases for Consortium and EasyTrip. The engineering challenge was full ownership of two layers simultaneously — maintaining a coherent API contract, consistent data model, and stable deployment pipeline without a separate backend team.',
     contribution: [
-      'Architected the React Native application — screen structure, navigation patterns, state management, and API integration layer connecting the mobile client to all backend surfaces.',
-      'Built the Node.js backend from the ground up — data models, REST API routes, authentication flows, and business logic designed specifically to support the mobile client\'s workflow requirements.',
+      'Architected the React Native applications — screen structure, navigation patterns, state management, and API integration layer connecting the mobile clients to all backend surfaces.',
+      'Built the Node.js backends from the ground up — data models, REST API routes, authentication flows, and business logic designed specifically to support each mobile client\'s workflow requirements.',
       'Owned the API contract between client and server — endpoint design, response shapes, error handling, and versioning across the full development cycle.',
-      'Delivered the complete product end-to-end as primary engineer — from architecture and initial build through to App Store and Google Play deployment.',
+      'Delivered complete products end-to-end as primary engineer — from architecture and initial build through to App Store and Google Play deployment.',
     ],
   },
 ]
 
-function Projects() {
-  const reduceMotion = useReducedMotion()
-
+function ProjectsPage() {
   return (
-    <section className="projects" id="projects">
-      <div className="projects__label">PROJECTS / DEPLOYMENTS</div>
-
-      <div className="projects__intro">
-        <h2 className="projects__heading">
-          Selected engineering work — enterprise platforms, SaaS products, and
-          mobile applications delivered in production.
-          <motion.span
-            className="heading-accent"
-            style={{ transformOrigin: 'left center' }}
-            initial={reduceMotion ? false : { scaleX: 0 }}
-            whileInView={reduceMotion ? undefined : { scaleX: 1 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.5, ease: EASE, delay: 0.2 }}
-          />
-        </h2>
-        <p className="projects__lead">
-          From a Premier League sports platform and global enterprise delivery to
-          independently shipped mobile applications and SaaS products — each
-          entry reflects direct ownership and end-to-end contribution.
-        </p>
-      </div>
-
-      <motion.div
-        className="projects__list"
-        initial={reduceMotion ? false : 'hidden'}
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.08 }}
-        variants={containerVariants}
-      >
+    <PageShell
+      label="PROJECTS / CASE STUDIES"
+      title="Selected Engineering Systems"
+      intro="Backend-heavy, full-stack engineering work — cloud platforms, product systems, and mobile platforms delivered end-to-end in production."
+    >
+      <div className="projects__list">
         {projects.map(({ number, name, meta, tags, description, contribution }) => (
-          <motion.article key={name} className="project-entry reveal-item" variants={itemVariants}>
+          <article key={name} className="project-entry">
             <div className="project-entry__header">
               <span className="project-entry__number">{number}</span>
               <div className="project-entry__tags">
@@ -135,11 +117,11 @@ function Projects() {
                 </ul>
               </div>
             </div>
-          </motion.article>
+          </article>
         ))}
-      </motion.div>
-    </section>
+      </div>
+    </PageShell>
   )
 }
 
-export default Projects
+export default ProjectsPage

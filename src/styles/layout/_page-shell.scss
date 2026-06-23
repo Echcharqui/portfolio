@@ -1,0 +1,63 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/breakpoints" as *;
+
+.page-shell {
+  padding: $space-8 $space-7;
+  border-top: 1px solid $color-border;
+
+  @include xl {
+    padding-left: $space-8;
+    padding-right: $space-8;
+  }
+
+  @include tablet {
+    padding: $space-7 $space-6;
+  }
+
+  @include mobile {
+    padding: $space-6 $space-5;
+  }
+}
+
+.page-shell__label {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+  margin-bottom: $space-5;
+  font-family: $font-display;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba($color-accent, 0.8);
+  letter-spacing: 0.13em;
+
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: $color-border;
+  }
+}
+
+.page-shell__title {
+  font-family: $font-main;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: $color-text;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  max-width: 760px;
+  margin-bottom: $space-5;
+}
+
+.page-shell__intro {
+  font-family: $font-main;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: $color-text-secondary;
+  line-height: 1.75;
+  max-width: 760px;
+
+  @include mobile {
+    font-size: 0.9rem;
+  }
+}

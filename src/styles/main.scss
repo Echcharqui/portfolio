@@ -13,6 +13,7 @@
 @use "layout/main-layout";
 @use "layout/sidebar";
 @use "layout/main-content";
+@use "layout/page-shell";
 
 // Components
 @use "components/sidebar" as sidebar-component;
@@ -20,11 +21,11 @@
 @use "components/buttons";
 @use "components/menu-button";
 @use "components/menu-overlay";
-@use "components/reveal";
+@use "components/footer-contact";
 
 // Sections
-@use "sections/hero";
-@use "sections/about";
+@use "sections/home-page";
+@use "sections/about-page";
 @use "sections/experience";
 @use "sections/projects";
 @use "sections/skills";

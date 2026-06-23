@@ -60,6 +60,10 @@
 .sidebar__profile {
   @include flex-center;
   flex-shrink: 0;
+
+  @include mobile {
+    width: 100%;
+  }
 }
 
 .profile-frame {

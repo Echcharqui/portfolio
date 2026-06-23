@@ -131,6 +131,20 @@ body.is-menu-open .mobile-cta {
   }
 }
 
+// ── Active route — current page indicator ─────────────────────
+.menu-overlay__link--active {
+  color: $color-accent;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 2px;
+    margin: $space-1 auto 0;
+    background-color: $color-accent;
+  }
+}
+
 // ── Footer social links ───────────────────────────────────────
 .menu-overlay__footer {
   display: flex;

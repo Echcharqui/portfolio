@@ -1,12 +1,13 @@
 import { useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
 
 const navItems = [
-  { label: 'HERO',       href: '#hero'       },
-  { label: 'ABOUT',      href: '#about'      },
-  { label: 'EXPERIENCE', href: '#experience' },
-  { label: 'PROJECTS',   href: '#projects'   },
-  { label: 'SKILLS',     href: '#skills'     },
-  { label: 'CONTACT',    href: '#contact'    },
+  { label: 'HOME',       to: '/',            end: true  },
+  { label: 'EXPERIENCE', to: '/experience',  end: false },
+  { label: 'PROJECTS',   to: '/projects',    end: false },
+  { label: 'SKILLS',     to: '/skills',      end: false },
+  { label: 'ABOUT',      to: '/about',       end: false },
+  { label: 'CONTACT',    to: '/contact',     end: false },
 ]
 
 const GitHubIcon = () => (
@@ -55,26 +56,23 @@ function MenuOverlay({ isOpen, onClose }: Props) {
         <div className="menu-overlay__rule" />
 
         <ul className="menu-overlay__list">
-          {navItems.map(({ label, href }, index) => (
+          {navItems.map(({ label, to, end }, index) => (
             <li
               key={label}
               className="menu-overlay__item"
               style={{ transitionDelay: isOpen ? `${index * 55 + 80}ms` : '0ms' }}
             >
-              <a
-                href={href}
-                className="menu-overlay__link"
+              <NavLink
+                to={to}
+                end={end}
+                className={({ isActive }) =>
+                  `menu-overlay__link${isActive ? ' menu-overlay__link--active' : ''}`
+                }
                 tabIndex={isOpen ? 0 : -1}
-                onClick={(e) => {
-                  e.preventDefault()
-                  onClose()
-                  setTimeout(() => {
-                    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
-                  }, 280)
-                }}
+                onClick={onClose}
               >
                 {label}
-              </a>
+              </NavLink>
             </li>
           ))}
         </ul>

@@ -1,11 +1,16 @@
+import { Outlet } from 'react-router-dom'
 import Sidebar from '../components/layout/Sidebar'
-import MainContent from '../components/layout/MainContent'
+import FooterContact from '../components/layout/FooterContact'
 
 function MainLayout() {
+
   return (
     <div className="layout">
       <Sidebar />
-      <MainContent />
+      <div className="layout__content">
+        <Outlet />
+        <FooterContact />
+      </div>
     </div>
   )
 }

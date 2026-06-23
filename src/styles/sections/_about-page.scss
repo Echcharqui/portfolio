@@ -1,0 +1,39 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/breakpoints" as *;
+
+// ── Profile blocks grid ────────────────────────────────────────
+.about-blocks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-4;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $space-3;
+  }
+}
+
+.about-blocks__item {
+  padding: $space-5;
+  border: 1px solid $color-border;
+  border-left: 2px solid rgba($color-accent, 0.35);
+  background-color: rgba($color-surface, 0.6);
+}
+
+.about-blocks__title {
+  font-family: $font-display;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: $color-text;
+  letter-spacing: 0.1em;
+  margin-bottom: $space-3;
+  line-height: 1.4;
+}
+
+.about-blocks__content {
+  font-family: $font-main;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: $color-muted;
+  line-height: 1.65;
+}

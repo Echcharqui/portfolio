@@ -1,5 +1,4 @@
-import { motion, useReducedMotion } from 'motion/react'
-import { containerVariants, itemVariants } from '../components/ui/motionConfig'
+import PageShell from '../layouts/PageShell'
 
 interface Engagement {
   name:   string
@@ -33,7 +32,7 @@ const entries: Entry[] = [
   {
     company: 'Arsenal FC',
     role:    'Backend Engineer — Sports Technology Platform',
-    meta:    'Sport Tech / High-Traffic Real-Time System',
+    meta:    'Sport Tech / High-Traffic Real-Time System (via NTT DATA)',
     tags:    ['MICROSERVICES', 'API', 'BULLMQ', 'EDA', 'QUEUE'],
     bullets: [
       'Designed and built backend microservices for a high-visibility sports technology platform — defining service contracts, data flow boundaries, and component responsibilities across a distributed architecture.',
@@ -63,22 +62,16 @@ const entries: Entry[] = [
   },
 ]
 
-function Experience() {
-  const reduceMotion = useReducedMotion()
-
+function ExperiencePage() {
   return (
-    <section className="experience" id="experience">
-      <div className="experience__label">EXPERIENCE / SYSTEMS</div>
-
-      <motion.div
-        className="experience__timeline"
-        initial={reduceMotion ? false : 'hidden'}
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
-        variants={containerVariants}
-      >
+    <PageShell
+      label="EXPERIENCE / SYSTEMS"
+      title="Engineering Experience"
+      intro="Backend-heavy full-stack experience across enterprise delivery, a high-traffic sports platform, and a string of product and startup engagements — spanning Node.js APIs, event-driven microservices, and end-to-end web/mobile delivery."
+    >
+      <div className="experience__timeline">
         {entries.map(({ company, role, date, meta, engagements, tags, bullets }) => (
-          <motion.div key={company} className="experience__entry reveal-item" variants={itemVariants}>
+          <div key={company} className="experience__entry">
             <div className="experience__indicator">
               <div className="experience__node" />
             </div>
@@ -112,11 +105,11 @@ function Experience() {
                 ))}
               </ul>
             </div>
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
-    </section>
+      </div>
+    </PageShell>
   )
 }
 
-export default Experience
+export default ExperiencePage

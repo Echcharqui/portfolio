@@ -76,8 +76,8 @@
     border-right: 1px solid $color-border;
   }
 
-  // First row (items 1, 2) → bottom border = row divider
-  &:nth-child(-n+2) {
+  // Every row except the last → bottom border = row divider
+  &:not(:nth-last-child(-n+2)) {
     border-bottom: 1px solid $color-border;
   }
 
@@ -87,7 +87,7 @@
       border-right: none;
     }
 
-    &:nth-child(-n+2) {
+    &:not(:nth-last-child(-n+2)) {
       border-bottom: none;
     }
 

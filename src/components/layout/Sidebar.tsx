@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import profileImg from '../../assets/images/echcharqui.gif'
 import MobileCTA from '../ui/MobileCTA'
 
@@ -21,19 +22,19 @@ const LinkedInIcon = () => (
 )
 
 const statusItems = [
-  { label: 'STATUS',    value: 'ONLINE',  mod: 'online' },
-  { label: 'LOCATION',  value: 'MOROCCO', mod: null },
-  { label: 'TIMEZONE',  value: 'UTC+1',   mod: null },
-  { label: 'AVAILABLE', value: 'OPEN',    mod: 'open' },
+  { label: 'STATUS', value: 'ONLINE', mod: 'online' },
+  { label: 'LOCATION', value: 'MOROCCO', mod: null },
+  { label: 'TIMEZONE', value: 'UTC+1', mod: null },
+  { label: 'AVAILABLE', value: 'OPEN', mod: 'open' },
 ]
 
 function Sidebar() {
   return (
     <aside className="sidebar">
-      <div className="sidebar__logo">
+      <Link to="/" className="sidebar__logo">
         <span>ECHCHARQUI</span>
-      </div>
-
+      </Link>
+      
       <div className="sidebar__body">
         <div className="sidebar__profile">
           <div className="profile-frame">
