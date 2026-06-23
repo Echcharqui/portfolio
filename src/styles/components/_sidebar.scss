@@ -50,8 +50,8 @@
   @include mobile {
     flex-direction: column;
     align-items: center;
-    gap: $space-5;
-    padding: $space-4 0 0;
+    gap: $space-4;
+    padding: $space-3 0 0;
     overflow-y: visible;
   }
 }
@@ -77,12 +77,24 @@
   .sidebar__profile:hover & {
     border-color: rgba($color-accent, 0.55);
   }
+
+  @include mobile {
+    // No fixed/cropped ratio — let the frame follow the image's own
+    // aspect ratio so the full portrait (face to torso) is visible
+    // instead of a cover-cropped banner strip.
+    aspect-ratio: auto;
+    height: auto;
+  }
 }
 
 // Image container — fills the frame absolutely
 .profile-frame__inner {
   position: absolute;
   inset: 0;
+
+  @include mobile {
+    position: static;
+  }
 }
 
 .profile-frame__img {
@@ -90,6 +102,12 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+
+  @include mobile {
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+  }
 
   @media (prefers-reduced-motion: no-preference) {
     transition: transform $duration-slow $ease-out;
@@ -172,6 +190,10 @@
   display: flex;
   flex-direction: column;
   gap: $space-4;
+
+  @include mobile {
+    gap: $space-3;
+  }
 }
 
 .sidebar__status-row {
@@ -213,12 +235,11 @@
 
 // ── Mobile compact mode (non-home routes) ────────────────────
 // On mobile, inner pages only show the fixed logo header; the
-// heavy profile/social/status/footer content is hidden so the
-// page content starts right below the header.
+// heavy profile/social/status content is hidden so the page
+// content starts right below the header.
 .sidebar--mobile-compact {
   @include mobile {
-    .sidebar__body,
-    .sidebar__footer {
+    .sidebar__body {
       display: none;
     }
   }
@@ -241,6 +262,8 @@
   }
 
   @include mobile {
-    padding-top: $space-3;
+    // The hero eyebrow on the home page repeats this exact phrase —
+    // avoid showing it twice on narrow viewports.
+    display: none;
   }
 }
