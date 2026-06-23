@@ -211,6 +211,19 @@
   }
 }
 
+// ── Mobile compact mode (non-home routes) ────────────────────
+// On mobile, inner pages only show the fixed logo header; the
+// heavy profile/social/status/footer content is hidden so the
+// page content starts right below the header.
+.sidebar--mobile-compact {
+  @include mobile {
+    .sidebar__body,
+    .sidebar__footer {
+      display: none;
+    }
+  }
+}
+
 // ── Footer Meta ──────────────────────────────────────────────
 .sidebar__footer {
   flex-shrink: 0;

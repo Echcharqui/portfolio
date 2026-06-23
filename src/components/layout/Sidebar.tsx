@@ -28,9 +28,13 @@ const statusItems = [
   { label: 'AVAILABLE', value: 'OPEN', mod: 'open' },
 ]
 
-function Sidebar() {
+type SidebarProps = {
+  isHomePage?: boolean
+}
+
+function Sidebar({ isHomePage = false }: SidebarProps) {
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar${!isHomePage ? ' sidebar--mobile-compact' : ''}`}>
       <Link to="/" className="sidebar__logo">
         <span>ECHCHARQUI</span>
       </Link>

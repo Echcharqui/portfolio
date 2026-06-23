@@ -32,4 +32,10 @@
     padding: 68px $space-4 $space-5; // 68px top = height of fixed logo header
     overflow: visible;
   }
+
+  &.sidebar--mobile-compact {
+    @include mobile {
+      padding-bottom: 0;
+    }
+  }
 }
