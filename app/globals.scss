@@ -1,0 +1,32 @@
+// Abstracts (no output — variables, mixins, functions only)
+@use "styles/abstracts/variables";
+@use "styles/abstracts/breakpoints";
+@use "styles/abstracts/mixins";
+@use "styles/abstracts/animations";
+
+// Base
+@use "styles/base/reset";
+@use "styles/base/typography";
+@use "styles/base/globals";
+
+// Layout
+@use "styles/layout/main-layout";
+@use "styles/layout/sidebar";
+@use "styles/layout/main-content";
+@use "styles/layout/page-shell";
+
+// Components
+@use "styles/components/sidebar" as sidebar-component;
+@use "styles/components/mobile-cta";
+@use "styles/components/buttons";
+@use "styles/components/menu-button";
+@use "styles/components/menu-overlay";
+@use "styles/components/footer-contact";
+
+// Sections
+@use "styles/sections/home-page";
+@use "styles/sections/about-page";
+@use "styles/sections/experience";
+@use "styles/sections/projects";
+@use "styles/sections/skills";
+@use "styles/sections/contact";
